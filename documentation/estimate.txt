@@ -1,1 +1,6 @@
+Estimate for hours completing this project:
 
+
+Setup: 6 hours (inital setup of the battleship board.  Need to create game boards, a way for the user to choose where to put the ships)
+Game process: 5 hours (actual game loop.  Need to keep track of ships and what locations are hits or misses)
+End game: 2 hours (how do we know when to end the game?)

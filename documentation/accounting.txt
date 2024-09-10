@@ -10,3 +10,4 @@ Ben Schulte: 1 hour, finished work on ships.cpp, and created and finished work o
 
 9/10/2024:
 Ben Schulte: 30 minutes, debugged and tested Ship class functionalites. Put files for class on Github
+Jesse DeBok: 5:18 - 6:18, 1 hour.  Created player class and tried to get setup to mesh with ships.

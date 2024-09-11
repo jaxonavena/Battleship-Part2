@@ -1,45 +1,26 @@
 using namespace std;
 
 #include <iostream>
+#include "src/setup.hpp"
 #include "src/ships.hpp"
 #include "src/player.cpp"
-#include <string>
 
-int getNumShips() {
-    int fin;
-    bool cont = true;
-    cout << "Please enter number of ships: "; //min 1 - max 5
-    cin >> fin;
-    while( cont ) {
-        if( ( fin > 5 ) || ( fin < 1 ) ) {
-            //sanitize? TODO
-            cout << "Bad number (min 1, max 5) please try again: ";
-            cin >> fin;
-        }
-        else {
-            cont = false;
-        }
-    }
-    return fin;
-}
 
 int main() {
     
     cout << "Hello and welcome to Project 1 581: 2 player battleship!" << endl;
     
-    int numShips = getNumShips(); //returns correct number of ships
+    const int numShips = Setup::getNumShips(); //returns correct number of ships
     
-    //set up player 1
+    //set up player both players by calling from the Setup namespace
     cout << "Setting up Player 1..." << endl;
-    string p1Name;
-    cout << "Please type your name: ";
-    cin >> p1Name;
     
-    Player p1( p1Name , numShips );
-    /*
-    cout << p1.returnName() << endl;
-    */
+    Player p1 = Setup::initialize_Player(numShips);
+
     //set up player 2
+    cout << "Setting up Player 2..." << endl;
+
+    Player p2 = Setup::initialize_Player(numShips);
     
     //enter main gameplay loop
     return 0;

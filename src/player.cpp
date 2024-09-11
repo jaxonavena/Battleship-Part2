@@ -6,7 +6,6 @@ using namespace std;
 
 class Player {
     public:
-        string name; //name of player 1
         Player( string named , int numShips ) {
             name = named;
             numofShips = numShips;
@@ -63,7 +62,9 @@ class Player {
         string returnName() {
             return name;
         };
+
     private:
+        string name; //name of the player
         Ship shipArray[ 5 ];
         int numofShips;
 };

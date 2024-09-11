@@ -30,7 +30,7 @@ int getNumShips() {
 
 //This function will initialize one of the players
 //Takes the number of ships as a parameter
-Player initialize_Player(const int numShips) {
+Player initializePlayer(const int numShips) {
     string name; //Name of the player that we will receive 
     cout << "Please type your name: ";
     cin >> name;

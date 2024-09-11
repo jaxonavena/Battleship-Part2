@@ -6,7 +6,7 @@
 namespace Setup {
 
 int getNumShips();
-Player initialize_Player(const int numShips);
+Player initializePlayer(const int numShips);
 
 }
 

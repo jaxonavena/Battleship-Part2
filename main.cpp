@@ -15,12 +15,12 @@ int main() {
     //set up player both players by calling from the Setup namespace
     cout << "Setting up Player 1..." << endl;
     
-    Player p1 = Setup::initialize_Player(numShips);
+    Player p1 = Setup::initializePlayer(numShips);
 
     //set up player 2
     cout << "Setting up Player 2..." << endl;
 
-    Player p2 = Setup::initialize_Player(numShips);
+    Player p2 = Setup::initializePlayer(numShips);
     
     //enter main gameplay loop
     return 0;

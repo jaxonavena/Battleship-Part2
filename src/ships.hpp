@@ -15,9 +15,9 @@ public:
   bool place(std::vector<std::pair<int, int>>& coords); // Places the ship by giving it the coordinates it controls
   void remove(void); // When the ship needs to be removed from the board
   void hit(std::pair<int, int>& coord); // Hit a space occupied by the ship
-  bool valid_space(std::pair<int, int>& coord); // Check if a given coordinate is occupied by this ship
-  bool is_hit(std::pair<int, int>& coord); // Check if a given space occupied by this ship is hit
-  bool is_sunk(void); // Check if the ship has been sunk
+  bool valid_space(const std::pair<int, int>& coord) const; // Check if a given coordinate is occupied by this ship
+  bool is_hit(const std::pair<int, int>& coord) const; // Check if a given space occupied by this ship is hit
+  bool is_sunk(void) const; // Check if the ship has been sunk
   std::vector<std::pair<std::pair<int, int>, bool>>& get_spaces(void); // Returns this ship's spaces and hit status's
 
 };

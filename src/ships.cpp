@@ -34,8 +34,8 @@ void Ship::hit(std::pair<int, int>& coord) {
 }
 
 // Check a coordinate for being controlled by this ship
-bool Ship::valid_space(std::pair<int, int>& coord) {
-  for (auto& space : spaces) {
+bool Ship::valid_space(const std::pair<int, int>& coord) const {
+  for (const auto& space : spaces) {
     if (coord == space.first) {
       return true;
     }
@@ -44,8 +44,8 @@ bool Ship::valid_space(std::pair<int, int>& coord) {
 }
 
 // Check a coordinate for being hit
-bool Ship::is_hit(std::pair<int, int>& coord) {
-  for (auto& space : spaces) {
+bool Ship::is_hit(const std::pair<int, int>& coord) const {
+  for (const auto& space : spaces) {
     if (coord == space.first)
       return space.second;
   }
@@ -53,8 +53,8 @@ bool Ship::is_hit(std::pair<int, int>& coord) {
 }
 
 // Check if the ship is sunk
-bool Ship::is_sunk() { 
-  for (auto& space : spaces) {
+bool Ship::is_sunk() const { 
+  for (const auto& space : spaces) {
     if (space.second == false) {
       return false;
     }

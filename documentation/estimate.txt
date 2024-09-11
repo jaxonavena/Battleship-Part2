@@ -1,6 +1,8 @@
 Estimate for hours completing this project:
 
 
-Setup: 6 hours (inital setup of the battleship board.  Need to create game boards, a way for the user to choose where to put the ships)
-Game process: 5 hours (actual game loop.  Need to keep track of ships and what locations are hits or misses)
-End game: 2 hours (how do we know when to end the game?)
+Setup: 6 hours (inital setup of the battleship board.  Need to create game boards, a way for the user to choose where to put the ships.  Should take some time to get C++ working with multiple different files without having linking issues.)
+Game process: 5 hours (actual game loop.  Need to keep track of ships and what locations are hits or misses.  Mostly code work and testing.)
+End game: 2 hours (how do we know when to end the game?  Takes less time as we should be able to use all of our already defined functions to complete the end game.)
+
+Misc (GTA meetings, team meetings): 2 hours (GTA meeting during the week and initial meeting, then final meeting and a meeting during the weekend to go over what we have left to do)

@@ -1,70 +1,39 @@
+#ifndef PLAYER_CPP
+#define PLAYER_CPP
 using namespace std;
 
 #include <iostream>
 #include <string>
-#include "ships.hpp"
+#include "ships.cpp"
 
 class Player {
     public:
         Player( string named , int numShips ) {
             name = named;
             numofShips = numShips;
-            OneShip one( ); TwoShip two(); ThreeShip three(); FourShip four(); FiveShip five();
             //setup number of ships
-            switch( numShips ) {
-                case 1:
-                    //1 ship
-                    OneShip one{ };
-                    shipArray[ 0 ] = one;
-                    shipArray[ 1 ] = NULL;
-                    shipArray[ 2 ] = NULL;
-                    shipArray[ 3 ] = NULL;
-                    shipArray[ 4 ] = NULL;
-                    break;
-                case 2:
-                    //2 ships
-                    shipArray[ 0 ] = one;
-                    shipArray[ 1 ] = two;
-                    shipArray[ 2 ] = NULL;
-                    shipArray[ 3 ] = NULL;
-                    shipArray[ 4 ] = NULL;
-                    break;
-                case 3:
-                    //3 ships
-                    shipArray[ 0 ] = one;
-                    shipArray[ 1 ] = two;
-                    shipArray[ 2 ] = three;
-                    shipArray[ 3 ] = NULL;
-                    shipArray[ 4 ] = NULL;
-                    break;
-                case 4:
-                    //4 ships
-                    shipArray[ 0 ] = one;
-                    shipArray[ 1 ] = two;
-                    shipArray[ 2 ] = three;
-                    shipArray[ 3 ] = four;
-                    shipArray[ 4 ] = NULL;
-                    break;
-                case 5:
-                    //5 ships
-                    shipArray[ 0 ] = one;
-                    shipArray[ 1 ] = two;
-                    shipArray[ 2 ] = three;
-                    shipArray[ 3 ] = four;
-                    shipArray[ 4 ] = five;
-                    break;
-                default:
-                    //invalid
-                    cout << "Invalid number of ships, exiting..." << endl;
-                    return -1;
+            for( int i = 0; i < numShips; i++ ) {
+                //create ship of size i
+                Ship* s1 = new Ship( i );
+                //ask where to put ship and put coordinates in ship
+                //TODO
+                shipArray[ i ] = s1; //place ship in array
             }
+           
         };
         string returnName() {
             return name;
         };
+        Ship* getShip( int shipSize ) {
+            if( (shipSize < 1) || ( shipSize > 5 ) ) {
+                return NULL; //invalid
+            }
+            return shipArray[ shipSize ];
+        };
 
     private:
         string name; //name of the player
-        Ship shipArray[ 5 ];
+        Ship* shipArray[ 5 ];
         int numofShips;
 };
+#endif

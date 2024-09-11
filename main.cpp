@@ -5,7 +5,11 @@ using namespace std;
 #include "src/setup.cpp"
 #include "src/ships.cpp"
 #include "src/player.cpp"
-
+static void printVector( vector<pair<pair<int, int>, bool>> v ) {
+    for( pair<pair<int, int>, bool> p : v ) {
+        cout << "Row: " << p.first.first << ", Column: " << p.first.second << ", Hit: " << p.second << endl;
+    }
+}
 
 int main() {
     
@@ -25,17 +29,24 @@ int main() {
 
     //set up player 2
     cout << "Setting up Player 2..." << endl;
-
+    cin.clear();
+    cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+    
     const optional<Player> p2 = Setup::initializePlayer(numShips);
     if ( !p2 ) {
         return 1;
     }
     Player person2 = p2.value();
     //enter main gameplay loop
-    cout << person1.getShip( 1 ) << endl;
+    
+    for( int i = 0; i < numShips; i++ ) {
+        printVector( person1.getShip( i+1 )->get_spaces() );
+    }
+    for( int i = 0; i < numShips; i++ ) {
+        printVector( person2.getShip( i+1 )->get_spaces() );
+    }
     return 0;
 }
-
 
 
 

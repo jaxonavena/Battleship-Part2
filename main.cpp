@@ -2,8 +2,8 @@ using namespace std;
 
 #include <iostream>
 #include <optional>
-#include "src/setup.hpp"
-#include "src/ships.hpp"
+#include "src/setup.cpp"
+#include "src/ships.cpp"
 #include "src/player.cpp"
 
 
@@ -21,6 +21,7 @@ int main() {
     if ( !p1 ) {
         return 1;
     }
+    Player person1 = p1.value();
 
     //set up player 2
     cout << "Setting up Player 2..." << endl;
@@ -29,11 +30,11 @@ int main() {
     if ( !p2 ) {
         return 1;
     }
-    
+    Player person2 = p2.value();
     //enter main gameplay loop
+    cout << person1.getShip( 1 ) << endl;
     return 0;
 }
-
 
 
 

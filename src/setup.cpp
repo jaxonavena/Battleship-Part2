@@ -20,7 +20,6 @@ int getNumShips() {
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 
         std::cout << "Bad number (min 1, max 5) please try again: ";
-        std::cin >> fin;
     } 
 
     //Clear input stream just in case cin leaves anything, as cin stops at white space

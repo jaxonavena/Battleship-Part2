@@ -17,3 +17,6 @@ Caden LeCluyse: 8 - 9:30, 1.5 hours. Created Setup namespace and finished setup.
 Caden LeCluyse: 11:15-11:30, 15 minutes. Changed cin to getline for getting player name.
 Team: 12:15 - 12:30, GTA Meeting
 Jesse DeBok: 3:50 - 7:00.  Completed setup for placing ships.  player.cpp checks if they are valid and if they are hitting another ship.  Now need board to display them.
+
+9/12/2024:
+Caden LeCluyse: 5-6:15, 1.25 hours. Split all files into header and cpp files. Changed raw pointers to shared pointers and raw arrays to std::array. Started including header files instead of cpp files. Changed makefile to account for header files. Changed some ints to std::size_t. Got the program to compile.

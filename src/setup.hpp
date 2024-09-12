@@ -2,12 +2,12 @@
 #define SETUP_HPP
 
 #include <optional>
-#include "player.cpp"
+#include "player.hpp"
 
 namespace Setup {
 
-int getNumShips();
-std::optional<Player> initializePlayer(const int numShips);
+[[nodiscard]] int getNumShips();
+[[nodiscard]] std::optional<Player> initializePlayer(const int numShips);
 
 }
 

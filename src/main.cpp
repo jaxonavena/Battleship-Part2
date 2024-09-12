@@ -2,9 +2,9 @@ using namespace std;
 
 #include <iostream>
 #include <optional>
-#include "src/setup.cpp"
-#include "src/ships.cpp"
-#include "src/player.cpp"
+#include "setup.hpp"
+#include "player.hpp"
+
 static void printVector( vector<pair<pair<int, int>, bool>> v ) {
     for( pair<pair<int, int>, bool> p : v ) {
         cout << "Row: " << p.first.first << ", Column: " << p.first.second << ", Hit: " << p.second << endl;
@@ -29,8 +29,6 @@ int main() {
 
     //set up player 2
     cout << "Setting up Player 2..." << endl;
-    cin.clear();
-    cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
     
     const optional<Player> p2 = Setup::initializePlayer(numShips);
     if ( !p2 ) {
@@ -47,38 +45,3 @@ int main() {
     }
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

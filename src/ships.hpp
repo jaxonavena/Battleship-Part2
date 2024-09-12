@@ -7,10 +7,10 @@
 class Ship {
 protected:
     std::vector<std::pair<std::pair<int, int>, bool>> spaces; // Spaces the ship controls along with their hit status
-    int shipSize; // Size of the ship
+    std::size_t shipSize; // Size of the ship
 
 public:
-  Ship(int size); // Initialiatize ship with given size
+  Ship(const std::size_t size); // Initialiatize ship with given size
   virtual ~Ship() = default; // Ship destructor
   bool place(std::vector<std::pair<int, int>>& coords); // Places the ship by giving it the coordinates it controls
   void remove(void); // When the ship needs to be removed from the board

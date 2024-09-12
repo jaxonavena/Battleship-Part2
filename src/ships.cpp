@@ -3,7 +3,7 @@
 #include "ships.hpp"
 
   // Initialize ship based on size
-Ship::Ship(int size) : shipSize(size) {
+Ship::Ship(const std::size_t size) : shipSize(size) {
   spaces.resize(size); // Give the ship enough space for its size
 }
 
@@ -12,7 +12,7 @@ bool Ship::place(std::vector<std::pair<int, int>>& coords) {
   if (coords.size() != shipSize) {
     return false;
   }
-  for (int i = 0; i < shipSize; i++) {
+  for (std::size_t i = 0; i < shipSize; i++) {
     spaces[i] = {coords[i], false};
   }
   return true;

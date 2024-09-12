@@ -3,13 +3,13 @@
 #include <iostream>
 #include <limits>
 #include <optional>
-#include "player.cpp"
+#include "player.hpp"
 
 namespace Setup {
 
 //This function will get the number of ships
-int getNumShips() {
-    int fin; //Value the function will return
+[[nodiscard]] int getNumShips() {
+    int fin = 0; //Value the function will return
     std::cout << "Please enter number of ships: "; //min 1 - max 5
 
     //Loop to validate the number of ships
@@ -31,9 +31,9 @@ int getNumShips() {
 
 //This function will initialize one of the players
 //Takes the number of ships as a parameter
-std::optional<Player> initializePlayer(const int numShips) {
+[[nodiscard]] std::optional<Player> initializePlayer(const int numShips) {
     std::string name; //Name of the player that we will receive 
-    cout << "Please type your name: ";
+    std::cout << "Please type your name: ";
 
     //If some error has ocurred, return a nullopt
     if ( !(std::getline(std::cin, name)) ) {

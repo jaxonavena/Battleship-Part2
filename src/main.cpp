@@ -5,8 +5,8 @@ using namespace std;
 #include "setup.hpp"
 #include "player.hpp"
 
-static void printVector( vector<pair<pair<int, int>, bool>> v ) {
-    for( pair<pair<int, int>, bool> p : v ) {
+static void printVector( vector<pair<pair<size_t, size_t>, bool>> v ) {
+    for( pair<pair<size_t, size_t>, bool> p : v ) {
         cout << "Row: " << p.first.first << ", Column: " << p.first.second << ", Hit: " << p.second << endl;
     }
 }

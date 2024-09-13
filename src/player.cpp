@@ -18,9 +18,9 @@ string Player::returnName() const {
     return name;
 }
 
-shared_ptr<Ship> Player::getShip( const int shipSize ) {
+shared_ptr<Ship> Player::getShip( const size_t shipSize ) {
 //input: ship size to get (etc 1 for ship size 1, 2 for ship size 2)
-//output: ship pointer to ship of that size controlled by this player
+//output: ship posize_ter to ship of that size controlled by this player
     if( (shipSize < 1) || ( shipSize > 5 ) ) {
         return nullptr; //invalid
     }
@@ -33,13 +33,13 @@ void Player::setupShips() {
         //TODO: output position of current ships for reference, need board
         //create ship of size i
         shared_ptr<Ship> s1 = make_shared<Ship>(i + 1); 
-        vector<pair<int, int>> coords( i + 1 ); //create vector of size i + 1
+        vector<pair<size_t, size_t>> coords( i + 1 ); //create vector of size i + 1
         //ask where to put ship and put coordinates in ship
         
         if( i == 0 ) {
             //ship size 1, little different.
             //first row
-            int row; //Value of the input
+            size_t row; //Value of the input
             cout << "Please enter ship 1 row: "; //min 1 - max 10
 
             //Loop to validate the rows
@@ -52,7 +52,7 @@ void Player::setupShips() {
                 cout << "Bad number (min 1, max 10) please try again: ";
             } 
             //then column
-            int column; //Value of the input
+            size_t column; //Value of the input
             cout << "Please enter ship 1 column: "; //min 1 - max 10
 
             //Loop to validate the column
@@ -64,7 +64,7 @@ void Player::setupShips() {
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 cout << "Bad number (min 1, max 10) please try again: ";
             } 
-            vector<pair<int, int>> oneCoords = { {row, column} };
+            vector<pair<size_t, size_t>> oneCoords = { {row, column} };
             s1->place(oneCoords);
         }
         else {
@@ -72,9 +72,9 @@ void Player::setupShips() {
             //bit longer as need to check ship is in valid spot.
             bool invalid = true;
             bool hittingOther = false;
-            int row = 0;
-            int column = 0; //Value of the input
-            int way = 0; //which way to put the back
+            size_t row = 0;
+            size_t column = 0; //Value of the input
+            size_t way = 0; //which way to put the back
             while( invalid || hittingOther ) {
                 invalid = true;
                 hittingOther = false;
@@ -124,7 +124,7 @@ void Player::setupShips() {
                     else {
                         invalid = false;
                         //put rest of coords in
-                        for( int j = 0; j <= i; j++ ) { //go over vector and put them in.
+                        for( size_t j = 0; j <= static_cast<size_t>(i); j++ ) { //go over vector and put them in.
                             //this is up, so only row decreases
                             coords[ j ] = {row - j, column};
                         }
@@ -140,7 +140,7 @@ void Player::setupShips() {
                     }
                     else {
                         invalid = false;
-                        for( int j = 0; j <= i; j++ ) { //go over vector and put them in.
+                        for( size_t j = 0; j <= static_cast<size_t>(i); j++ ) { //go over vector and put them in.
                             //this is right, so only column increases
                             coords[ j ] = {row, column+j};
                         }
@@ -156,7 +156,7 @@ void Player::setupShips() {
                     }
                     else {
                         invalid = false;
-                        for( int j = 0; j <= i; j++ ) { //go over vector and put them in.
+                        for( size_t j = 0; j <= static_cast<size_t>(i); j++ ) { //go over vector and put them in.
                             //this is down, so only row increases
                             coords[ j ] = {row + j, column};
                         }
@@ -172,7 +172,7 @@ void Player::setupShips() {
                     }
                     else {
                         invalid = false;
-                        for( int j = 0; j <= i; j++ ) { //go over vector and put them in.
+                        for( size_t j = 0; j <= static_cast<size_t>(i); j++ ) { //go over vector and put them in.
                             //this is left, so only column decreases
                             coords[ j ] = {row, column - j};
                         }
@@ -184,10 +184,10 @@ void Player::setupShips() {
                     //set hittingOther = false if not
                     //start at ship 0 (size 1) and go up to one less than current size (which is i)
                     //example: ship size 2 is i = 1, so this checks ship size 1.
-                    for( int j = 0; j < i; j++ ) {
+                    for( size_t j = 0; j < static_cast<size_t>(i); j++ ) {
                         shared_ptr<Ship> shipToCheck = shipArray[ j ];
-                        //go over each point in current ship and see if it conflicts
-                        for(int k = 0; k <= i; k++ ) {
+                        //go over each posize_t in current ship and see if it conflicts
+                        for(size_t k = 0; k <= static_cast<size_t>(i); k++ ) {
                             if( shipToCheck->valid_space( coords[ k ] ) == true ) {
                                 //conflict
                                 hittingOther = true;

@@ -12,7 +12,7 @@ class Player {
     public:
         Player( const string named, const int numShips);  
         string returnName() const;
-        shared_ptr<Ship> getShip( const int shipSize );
+        shared_ptr<Ship> getShip( const size_t shipSize );
         void setupShips();
 
     private:

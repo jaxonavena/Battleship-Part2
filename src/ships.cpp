@@ -8,7 +8,7 @@ Ship::Ship(const std::size_t size) : shipSize(size) {
 }
 
 // Place the ship on the board
-bool Ship::place(std::vector<std::pair<int, int>>& coords) {
+bool Ship::place(std::vector<std::pair<std::size_t, std::size_t>>& coords) {
   if (coords.size() != shipSize) {
     return false;
   }
@@ -24,7 +24,7 @@ void Ship::remove() {
 }
 
  // Hit a space occupied by the ship
-void Ship::hit(std::pair<int, int>& coord) {
+void Ship::hit(std::pair<std::size_t, std::size_t>& coord) {
   for (auto& space : spaces) {
     if (coord == space.first) {
       space.second = true;
@@ -34,7 +34,7 @@ void Ship::hit(std::pair<int, int>& coord) {
 }
 
 // Check a coordinate for being controlled by this ship
-bool Ship::valid_space(const std::pair<int, int>& coord) const {
+bool Ship::valid_space(const std::pair<std::size_t, std::size_t>& coord) const {
   for (const auto& space : spaces) {
     if (coord == space.first) {
       return true;
@@ -44,7 +44,7 @@ bool Ship::valid_space(const std::pair<int, int>& coord) const {
 }
 
 // Check a coordinate for being hit
-bool Ship::is_hit(const std::pair<int, int>& coord) const {
+bool Ship::is_hit(const std::pair<std::size_t, std::size_t>& coord) const {
   for (const auto& space : spaces) {
     if (coord == space.first)
       return space.second;
@@ -63,7 +63,7 @@ bool Ship::is_sunk() const {
 }
 
 // Returns this ship's spaces and hit status's
-std::vector<std::pair<std::pair<int, int>, bool>>& Ship::get_spaces() {
+std::vector<std::pair<std::pair<std::size_t, std::size_t>, bool>>& Ship::get_spaces() {
   return spaces;
 }
 

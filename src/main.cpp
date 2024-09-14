@@ -1,12 +1,14 @@
 using namespace std;
 
+#include "gameloop.hpp"
+
 #include <iostream>
 #include <optional>
-#include "setup.hpp"
 #include "player.hpp"
+#include "setup.hpp"
 
-static void printVector( vector<pair<pair<size_t, size_t>, bool>> v ) {
-    for( pair<pair<size_t, size_t>, bool> p : v ) {
+static void printVector( const vector<pair<pair<size_t, size_t>, bool>>& v ) {
+    for( const pair<pair<size_t, size_t>, bool>& p : v ) {
         cout << "Row: " << p.first.first << ", Column: " << p.first.second << ", Hit: " << p.second << endl;
     }
 }
@@ -25,7 +27,6 @@ int main() {
     if ( !p1 ) {
         return 1;
     }
-    Player person1 = p1.value();
 
     //set up player 2
     cout << "Setting up Player 2..." << endl;
@@ -34,14 +35,19 @@ int main() {
     if ( !p2 ) {
         return 1;
     }
-    Player person2 = p2.value();
-    //enter main gameplay loop
+
+    //Initialize gameplay loop by dereferencing the optionals
+    //Dereferencing accesses the object directly, .value() returns a copy, so this avoids an extra copy
+    GameplayLoop gameLoop(*p1, *p2);
+    gameLoop.start();
     
+    /*
     for( int i = 0; i < numShips; i++ ) {
         printVector( person1.getShip( i+1 )->get_spaces() );
     }
     for( int i = 0; i < numShips; i++ ) {
         printVector( person2.getShip( i+1 )->get_spaces() );
     }
+    */
     return 0;
 }

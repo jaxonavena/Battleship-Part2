@@ -9,7 +9,7 @@ using namespace std;
 #include "ships.hpp"
 #include <limits>
 
-Player::Player( const string named , const int numShips ) {
+Player::Player( const string& named , const int numShips ) {
     name = named;
     numofShips = numShips;
 }

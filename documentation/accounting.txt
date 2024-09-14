@@ -23,3 +23,6 @@ Caden LeCluyse: 5-6:15, 1.25 hours. Split all files into header and cpp files. C
 
 9/13/2024:
 Caden LeCluyse: 3:15-3:45, 30 minutes. Converted all ints to size_t except the number of ships. We could convert numShips to an unsigned int to avoid casting or we can just cast it like I did.
+
+9/14/2024:
+Caden LeCluyse: 3:50-4:20, 30 minutes. Started making the gameplay loop.

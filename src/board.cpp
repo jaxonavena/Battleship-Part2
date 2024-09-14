@@ -4,16 +4,16 @@
 #include "board.hpp"
 
 Board::Board() {
-	for (int i = 0; i < 10; i++) {
-		for (int j = 0; j < 10; j++) {
+	for (std::size_t i = 0; i < 10; i++) {
+		for (std::size_t j = 0; j < 10; j++) {
 			board[i][j] = '_';
 		}
 	}
 }
 
-void Board::print() {
-	for (int i = 0; i < 10; i++) {
-		for (int j = 0; j < 9; j++) {
+void Board::print() const {
+	for (std::size_t i = 0; i < 10; i++) {
+		for (std::size_t j = 0; j < 9; j++) {
 			std::cout << '|' << board[i][j];
 		}
 
@@ -21,9 +21,9 @@ void Board::print() {
 	}
 }
 
-void Board::print_for_opponent() {
-	for (int i = 0; i < 10; i++) {
-		for (int j = 0; j < 10; j++) {
+void Board::print_for_opponent() const {
+	for (std::size_t i = 0; i < 10; i++) {
+		for (std::size_t j = 0; j < 10; j++) {
 			if (board[i][j] == 'S') {
 				std::cout << "|_";
 			}
@@ -37,9 +37,9 @@ void Board::print_for_opponent() {
 	}
 }
 
-void Board::update(const std::pair<int, int>& coord, bool is_hit) {
-	int row = coord.first;
-	int col = coord.second;
+void Board::update(const std::pair<std::size_t, std::size_t>& coord, const bool is_hit) {
+	const std::size_t row = coord.first;
+	const std::size_t col = coord.second;
 
 	if (is_hit) {
 		board[row][col] = 'X';
@@ -50,10 +50,10 @@ void Board::update(const std::pair<int, int>& coord, bool is_hit) {
 	}
 }
 
-void Board::place_ship(const std::vector<std::pair<int, int> >& coords) {
+void Board::place_ship(const std::vector<std::pair<std::size_t, std::size_t> >& coords) {
 	for (const auto& coord : coords) {
-		int row = coord.first;
-		int col = coord.second;
+		const std::size_t row = coord.first;
+		const std::size_t col = coord.second;
 		board[row][col] = 'S';
 	}
 }

@@ -6,19 +6,19 @@
 
 class Board {
 protected:
-	//std::vector<std::pair<std::pair<int, int>, bool>> spaces; // Spaces the ship controls along with their hit status
-	//int shipSize; // Size of the ship
+	//std::vector<std::pair<std::pair<std::size_t, std::size_t>, bool>> spaces; // Spaces the ship controls along with their hit status
+	//std::size_t shipSize; // Size of the ship
 	char board[10][10];
 
 public:
 	Board(); // Initialiatize board
 	virtual ~Board() = default; // Board destructor
-	//void add_hit(std::pair<int, int>);
-	//void add_miss(std::pair<int, int>);
-	void print();
-	void print_for_opponent();
-	void update(const std::pair<int, int>& coord, bool is_hit);
-	void place_ship(const std::vector<std::pair<int, int> >& coords);
+	//void add_hit(std::pair<std::size_t, std::size_t>);
+	//void add_miss(std::pair<std::size_t, std::size_t>);
+	void print() const;
+	void print_for_opponent() const;
+	void update(const std::pair<std::size_t, std::size_t>& coord, const bool is_hit);
+	void place_ship(const std::vector<std::pair<std::size_t, std::size_t> >& coords);
 };
 
 #endif

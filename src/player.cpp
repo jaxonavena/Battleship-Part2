@@ -36,8 +36,6 @@ size_t Player::convert_chartoIndex( char column ) const {
 Player::Player( const string& named , const int numShips ) { //Player constructor from player name and number of ships
     name = named; //player's name
     numofShips = numShips; //number of ships this player controls
-    top_board = make_unique<Board>(); //create top board
-    bottom_board = make_unique<Board>(); //create bottom board
 }
 
 string Player::returnName() const {
@@ -49,9 +47,14 @@ int Player::getNumShips() const {
 }
 
 void Player::print_Board() {
-    top_board->print_for_opponent(); //print top board
-    bottom_board->print(); //print bottom board
+    top_board.print(); //print top board
+    bottom_board.print(); //print bottom board
 }
+
+char Player::getCellTopBoard(const size_t row, const size_t col) const {
+    return top_board.getCell(row, col);
+}
+
 shared_ptr<Ship> Player::getShip( const size_t shipSize ) {
 //input: ship size to get (etc 1 for ship size 1, 2 for ship size 2)
 //output: ship pointer to ship of that size controlled by this player
@@ -81,7 +84,7 @@ void Player::setupShips() {
         if( i == 0 ) {
             //ship size 1, little different.
             //first row
-            bottom_board->print(); //print board out for reference
+            bottom_board.print(); //print board out for reference
             size_t row; //Value of the input
             cout << "Please enter ship 1 row: "; //min 1 - max 10
 
@@ -248,7 +251,7 @@ void Player::setupShips() {
                 
             }
             s1->place(coords); //update ship array
-            bottom_board->place_ship( coords ); //update board with ship
+            bottom_board.place_ship( coords ); //update board with ship
         }
         shipArray[ i ] = s1; //place ship in array
         cin.clear(); //clear stream

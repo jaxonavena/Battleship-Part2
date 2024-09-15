@@ -20,6 +20,7 @@ class GameplayLoop {
         Player playerOne;  
         Player playerTwo;
         short currentTurn;
+        bool verifyShot(const std::pair<std::size_t, std::size_t>& shot) const;
         std::pair<std::size_t, std::size_t> getShot() const;
         void playerOneTurn();
         void playerTwoTurn();

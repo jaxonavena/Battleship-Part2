@@ -18,6 +18,21 @@ GameplayLoop::GameplayLoop(Player&& p1, Player&& p2) :
                            playerOne(std::move(p1)), playerTwo(std::move(p2)),
                            currentTurn(1){} //this moves the player objects 
 
+bool GameplayLoop::verifyShot(const std::pair<std::size_t, std::size_t>& shot) const {
+    const auto [row, col] = shot;
+    if ( !currentTurn ) {
+        if ( playerOne.getCellTopBoard(row, col) == 'X' || playerOne.getCellTopBoard(row, col) == 'O' ) {
+            return false;
+        }
+    } else {
+        if ( playerTwo.getCellTopBoard(row, col) == 'X' || playerTwo.getCellTopBoard(row, col) == 'O' ) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 //This function gets a shot from the user in the format of RowCol
 std::pair<std::size_t, std::size_t> GameplayLoop::getShot() const {
     size_t shot_row = 0; //Value of the input
@@ -89,9 +104,7 @@ bool GameplayLoop::gameOver() const {
                   << playerOne.returnName() << " wins!" << std::endl;
         return true;
     }
-    else {
-        return false;
-    }
+    return false;
 }
 
 void GameplayLoop::start() {
@@ -103,23 +116,16 @@ void GameplayLoop::start() {
         //(0 + 1) % 2 = 1 player two
         ++currentTurn %= 2;
         //if currentTurn == 0
-        if (!currentTurn) {
+        if ( !currentTurn ) {
             playerOneTurn();
         } else {
             playerTwoTurn();
         }
-        //Check if game over from player 1
+        //Check if game over 
         //If the game is over, exit the loop
         if( gameOver() ) {
             return;
         }
-        //Player 2 takes their turn
-        
-        //Check if game over from player 2
-        //If the game is over, exit the loop
-        if( gameOver() ) {
-            return;
-        }
-    }
 
+    }
 }

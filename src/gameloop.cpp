@@ -78,12 +78,12 @@ void GameplayLoop::playerOneTurn() {
     //Player 1 takes their turn
     std::cout << "Player 1's Turn." << std::endl;
     playerOne.print_Board(); //print player 1's board
-    const auto [row, col] = getShot(); //Structured binding that gets the shot from the user
+    const auto playerShot = getShot(); //Structured binding that gets the shot from the user
 
     bool flag = false;
 
     for (int i = 0; i < 5; i++) {
-        if (playerOne.shipArray[i].is_hit(std::pair<row, col> coord)) { //if is_hit, update board and ship
+        if (playerOne.shipArray[i]->is_hit(playerShot)) { //if is_hit, update board and ship
             flag = true;
         }
 

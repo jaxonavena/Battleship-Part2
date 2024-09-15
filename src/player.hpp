@@ -20,7 +20,6 @@ class Player {
         string returnName() const;
         int getNumShips() const;
         char getCellTopBoard(const size_t row, const size_t col) const;
-        shared_ptr<Ship> getShip( const size_t shipSize );
         shared_ptr<Ship> getShip( const size_t shipSize ) const;
         void setupShips();
         void print_Board(); //prints both top and bottom board

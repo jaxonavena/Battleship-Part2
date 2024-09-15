@@ -1,3 +1,10 @@
+/*
+Program: Setup class
+Description: This class represents the setup part of the game.  This is creating
+the players and them setting their boats.  This also gets the number of ships
+to be played with in the game.
+Author: Team 9
+*/
 #include "setup.hpp"
 
 #include <iostream>
@@ -31,7 +38,7 @@ namespace Setup {
 
 //This function will initialize one of the players
 //Takes the number of ships as a parameter
-[[nodiscard]] std::optional<Player> initializePlayer(const int numShips) {
+[[nodiscard]] std::optional<Player> initializePlayer(const int numShips) {    
     std::string name; //Name of the player that we will receive 
     std::cout << "Please type your name: ";
 

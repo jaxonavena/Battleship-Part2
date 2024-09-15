@@ -1,3 +1,8 @@
+/*
+Program: Header file for GameLoop class
+Description: Contains gameloop methods which are implemented in gameloop.cpp
+Author: Team 9
+*/
 #ifndef GAMELOOP_H
 #define GAMELOOP_H
 

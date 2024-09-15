@@ -10,6 +10,7 @@ using namespace std;
 
 #include "gameloop.hpp"
 
+#include <cstdlib>
 #include <iostream>
 #include <optional>
 #include "player.hpp"
@@ -40,6 +41,8 @@ int main() {
     p1.value().print_Board(); //TMP
     //finish setup p1
     
+    system("clear"); //clear the screen so player 2 doesn't see player 1's board
+
     //set up player 2
     cout << "\n\n\n\n\n\n\nSetting up Player 2..." << endl;
     
@@ -49,6 +52,9 @@ int main() {
     }
     p2.value().setupShips(); //setup ships within p2
     p2.value().print_Board(); //TMP
+
+    system("clear"); //clear the screen so player 1 doesn't see player 2's board
+
     cout << "\n\n\n\n\n\n\nStarting game..." << endl;
     //Initialize gameplay loop by dereferencing the optionals
     //Dereferencing accesses the object directly

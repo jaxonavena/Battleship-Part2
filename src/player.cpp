@@ -49,7 +49,7 @@ int Player::getNumShips() const {
 }
 
 void Player::print_Board() {
-    top_board->print(); //print top board
+    top_board->print_for_opponent(); //print top board
     bottom_board->print(); //print bottom board
 }
 shared_ptr<Ship> Player::getShip( const size_t shipSize ) {

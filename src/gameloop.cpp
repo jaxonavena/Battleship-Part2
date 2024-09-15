@@ -51,13 +51,17 @@ std::pair<std::size_t, std::size_t> GameplayLoop::getShot() const {
 void GameplayLoop::playerOneTurn() {
     //Player 1 takes their turn
     std::cout << "Player 1's Turn." << std::endl;
+    playerOne.print_Board(); //print player 1's board
     const auto [row, col] = getShot(); //Structured binding that gets the shot from the user
+    system("clear"); //clear the terminal before the next action
 }
 
 void GameplayLoop::playerTwoTurn() {
     //Player 2 takes their turn
     std::cout << "Player 2's Turn." << std::endl;
+    playerTwo.print_Board(); //print player 2's board
     const auto [row, col] = getShot(); //Structured binding that gets the shot from the user
+    system("clear"); //clear the terminal before the next action
 }
 
 bool GameplayLoop::gameOver() const {

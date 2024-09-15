@@ -18,6 +18,7 @@ class Player {
     public:
         Player( const string& named, const int numShips);  
         string returnName() const;
+        int getNumShips() const;
         shared_ptr<Ship> getShip( const size_t shipSize );
         void setupShips();
         void print_Board(); //prints both top and bottom board

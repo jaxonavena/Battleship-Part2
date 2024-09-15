@@ -48,7 +48,7 @@ int Player::getNumShips() const {
 
 void Player::print_Board() {
     top_board.print(); //print top board
-    bottom_board.print(); //print bottom board
+    bottom_board.print_for_opponent(); //print bottom board
 }
 
 char Player::getCellTopBoard(const size_t row, const size_t col) const {

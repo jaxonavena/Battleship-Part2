@@ -111,7 +111,7 @@ void Player::setupShips() {
             size_t column_conv = convert_chartoIndex( column ); //converts my char to a zero-indexed board number
             vector<pair<size_t, size_t>> oneCoords = { {row - 1, column_conv } }; //since board 0 indexed, need to subtract 1 from row
             s1->place(oneCoords); //place ship in ship array
-            bottom_board->place_ship( oneCoords ); //update board with ship
+            bottom_board.place_ship( oneCoords ); //update board with ship
         }
         else {
             //any other size of ship
@@ -122,7 +122,7 @@ void Player::setupShips() {
             int column = 0; //Value of column, HAS to be int as can be negative when checking if it goes off board
             size_t way = 0; //which way to put the back
             while( invalid || hittingOther ) {
-                bottom_board->print(); //print board out for reference
+                bottom_board.print(); //print board out for reference
                 invalid = true; //reset for loop
                 hittingOther = false; //reset for loop
                 //first row

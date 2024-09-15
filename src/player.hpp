@@ -20,6 +20,7 @@ class Player {
         string returnName() const;
         int getNumShips() const;
         shared_ptr<Ship> getShip( const size_t shipSize );
+        shared_ptr<Ship> getShip( const size_t shipSize ) const;
         void setupShips();
         void print_Board(); //prints both top and bottom board
         size_t convert_chartoIndex( char column ); //converts a column char to a 0 indexed size_t

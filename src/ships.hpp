@@ -1,6 +1,11 @@
+/*
+Program: Header file for ship class
+Description: Contains methods implemented within the Ship class.
+Author: Team 9
+*/
 #ifndef SHIPS_HPP
 #define SHIPS_HPP
-
+//prevents duplicate inclusion
 #include <vector>
 #include <utility>
 
@@ -49,6 +54,3 @@ public:
 };
 
 #endif // SHIPS_HPP
-
-
-

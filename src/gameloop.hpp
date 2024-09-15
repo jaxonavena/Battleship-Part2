@@ -11,7 +11,7 @@ Author: Team 9
 class GameplayLoop {
 
     public:
-        GameplayLoop(const Player& p1, const Player& p2);
+        GameplayLoop(Player&& p1, Player&& p2); //Move constructor
         void start(); //Main loop
 
     private:

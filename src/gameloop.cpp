@@ -10,9 +10,9 @@ Author: Team 9
 #include "gameloop.hpp"
 #include <iostream>
 #include <limits>
-//Initialize gameplay loop by taking const refs 
-GameplayLoop::GameplayLoop(const Player& p1, const Player& p2) : 
-                           playerOne(p1), playerTwo(p2){} //this object controls the player objects.
+//Initialize gameplay loop by taking rvalue refs 
+GameplayLoop::GameplayLoop(Player&& p1, Player&& p2) : 
+                           playerOne(std::move(p1)), playerTwo(std::move(p2)){} //this object controls the player objects.
 
 bool GameplayLoop::gameOver() {
     return true; //TODO

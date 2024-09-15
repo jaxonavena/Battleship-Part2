@@ -36,8 +36,8 @@ size_t Player::convert_chartoIndex( char column ) {
 Player::Player( const string& named , const int numShips ) { //Player constructor from player name and number of ships
     name = named; //player's name
     numofShips = numShips; //number of ships this player controls
-    top_board = new Board(); //create top board
-    bottom_board = new Board(); //create bottom board
+    top_board = make_unique<Board>(); //create top board
+    bottom_board = make_unique<Board>(); //create bottom board
 }
 
 string Player::returnName() const {

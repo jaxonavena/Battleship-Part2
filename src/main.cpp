@@ -51,8 +51,10 @@ int main() {
     p2.value().print_Board(); //TMP
     cout << "\n\n\n\n\n\n\nStarting game..." << endl;
     //Initialize gameplay loop by dereferencing the optionals
-    //Dereferencing accesses the object directly, .value() returns a copy, so this avoids an extra copy
-    GameplayLoop gameLoop(*p1, *p2);
+    //Dereferencing accesses the object directly
+    //The player objects will be moved into the gameplay loop after this, meaning they cant be used in main
+    //Unique ptrs can be changed to shared ptrs if they are needed in main
+    GameplayLoop gameLoop(std::move(*p1), std::move(*p2));
     gameLoop.start();
     
     /*

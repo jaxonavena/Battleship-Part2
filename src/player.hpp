@@ -26,8 +26,8 @@ class Player {
         string name; //name of the player
         array<shared_ptr<Ship>, 5> shipArray; //A std::array of shared pointers whose size is 5
         int numofShips;
-        Board* top_board;    //top board, shows this player's shots and hits
-        Board* bottom_board; //bottom board, shows this player's ships
+        unique_ptr<Board> top_board;    //top board, shows this player's shots and hits
+        unique_ptr<Board> bottom_board; //bottom board, shows this player's ships
 };
 
 #endif

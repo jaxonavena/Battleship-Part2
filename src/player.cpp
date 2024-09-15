@@ -43,6 +43,11 @@ Player::Player( const string& named , const int numShips ) { //Player constructo
 string Player::returnName() const {
     return name; //return name
 }
+
+int Player::getNumShips() const {
+    return numofShips;
+}
+
 void Player::print_Board() {
     top_board->print(); //print top board
     bottom_board->print(); //print bottom board

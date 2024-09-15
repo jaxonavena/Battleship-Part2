@@ -1,3 +1,11 @@
+/*
+Program: Main class
+Inputs: player input to run battleship game
+outputs: displays the battleship game
+Description: Main class called from the terminal.  Calls setup and main 
+game loop but doesn't do much computation within main.
+Author: Team 9
+*/
 using namespace std;
 
 #include "gameloop.hpp"
@@ -23,19 +31,24 @@ int main() {
     //If the optional returns null, exit the program with an error code
     cout << "Setting up Player 1..." << endl;
     
-    const optional<Player> p1 = Setup::initializePlayer(numShips);
+    optional<Player> p1 = Setup::initializePlayer(numShips); //player 1, set optional to catch errors.
+    //can't be const as will be changing the ships and boards controlled by the player
     if ( !p1 ) {
         return 1;
     }
-
+    p1.value().setupShips(); //setup ships within p1
+    p1.value().print_Board(); //TMP
+    //finish setup p1
+    
     //set up player 2
     cout << "Setting up Player 2..." << endl;
     
-    const optional<Player> p2 = Setup::initializePlayer(numShips);
+    optional<Player> p2 = Setup::initializePlayer(numShips); //player 2, set optional to catch errors
     if ( !p2 ) {
         return 1;
     }
-
+    p2.value().setupShips(); //setup ships within p2
+    p2.value().print_Board(); //TMP
     //Initialize gameplay loop by dereferencing the optionals
     //Dereferencing accesses the object directly, .value() returns a copy, so this avoids an extra copy
     GameplayLoop gameLoop(*p1, *p2);

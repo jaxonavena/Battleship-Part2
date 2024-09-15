@@ -1,3 +1,8 @@
+/*
+Program: Board header file
+Description:  Contains the methods which are implemented in the board class
+Author: Team 9
+*/
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
@@ -8,7 +13,7 @@ class Board {
 protected:
 	//std::vector<std::pair<std::pair<std::size_t, std::size_t>, bool>> spaces; // Spaces the ship controls along with their hit status
 	//std::size_t shipSize; // Size of the ship
-	char board[10][10];
+	char board[10][10]; //board is 10 X 10 size
 
 public:
 	Board(); // Initialiatize board

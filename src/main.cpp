@@ -41,7 +41,7 @@ int main() {
     //finish setup p1
     
     //set up player 2
-    cout << "Setting up Player 2..." << endl;
+    cout << "\n\n\n\n\n\n\nSetting up Player 2..." << endl;
     
     optional<Player> p2 = Setup::initializePlayer(numShips); //player 2, set optional to catch errors
     if ( !p2 ) {
@@ -49,6 +49,7 @@ int main() {
     }
     p2.value().setupShips(); //setup ships within p2
     p2.value().print_Board(); //TMP
+    cout << "\n\n\n\n\n\n\nStarting game..." << endl;
     //Initialize gameplay loop by dereferencing the optionals
     //Dereferencing accesses the object directly, .value() returns a copy, so this avoids an extra copy
     GameplayLoop gameLoop(*p1, *p2);

@@ -23,6 +23,10 @@ char Board::getCell(const std::size_t row, const std::size_t col) const { //Gets
     return board[row][col];
 }
 
+const std::array<std::array<char, 10>, 10>& Board::get_board() const {
+	return board;
+}
+
 void Board::print() const {
     std::cout << "\n  |A|B|C|D|E|F|G|H|I|J|" << std::endl; //print out top row with labels
 	for (std::size_t i = 0; i < 10; i++) { //print out 10 row

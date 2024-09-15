@@ -55,6 +55,14 @@ char Player::getCellTopBoard(const size_t row, const size_t col) const {
     return top_board.getCell(row, col);
 }
 
+Board Player::get_top_board() {
+	return this->top_board;
+}
+
+Board Player::get_bottom_board() {
+	return this->bottom_board;
+}
+
 shared_ptr<Ship> Player::getShip( const size_t shipSize ) {
 //input: ship size to get (etc 1 for ship size 1, 2 for ship size 2)
 //output: ship pointer to ship of that size controlled by this player

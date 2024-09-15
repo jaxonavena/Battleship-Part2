@@ -17,7 +17,10 @@ class GameplayLoop {
     private:
         Player playerOne;  
         Player playerTwo;
-        bool gameOver();
+        short currentTurn;
+        void playerOneTurn();
+        void playerTwoTurn();
+        bool gameOver() const;
 };
 
 #endif

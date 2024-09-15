@@ -17,7 +17,7 @@ using namespace std;
 #include "ships.hpp"
 #include <limits>
 
-static size_t convert_chartoIndex( char column ) {
+size_t Player::convert_chartoIndex( char column ) {
     //Converts a char into its proper number for board indexing
     //a is 97, j is 106. Want a to be 0 and j to be 9
     if( column == 'a' ) {return 0;} //a to 0
@@ -36,8 +36,8 @@ static size_t convert_chartoIndex( char column ) {
 Player::Player( const string& named , const int numShips ) { //Player constructor from player name and number of ships
     name = named; //player's name
     numofShips = numShips; //number of ships this player controls
-    top_board = make_unique<Board>(); //create top board
-    bottom_board = make_unique<Board>(); //create bottom board
+    top_board = new Board(); //create top board
+    bottom_board = new Board(); //create bottom board
 }
 
 string Player::returnName() const {

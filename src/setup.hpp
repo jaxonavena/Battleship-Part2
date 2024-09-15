@@ -1,3 +1,8 @@
+/*
+Program: header file for setup class
+Description: Contains methods implemented in setup class
+Author: Team 9
+*/
 #ifndef SETUP_HPP
 #define SETUP_HPP
 
@@ -6,8 +11,8 @@
 
 namespace Setup {
 
-[[nodiscard]] int getNumShips();
-[[nodiscard]] std::optional<Player> initializePlayer(const int numShips);
+[[nodiscard]] int getNumShips(); //don't ignore return value, so nodiscard
+[[nodiscard]] std::optional<Player> initializePlayer(const int numShips); //don't ignore return value, so nodiscard
 
 }
 

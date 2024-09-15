@@ -20,16 +20,16 @@ using namespace std;
 size_t Player::convert_chartoIndex( char column ) {
     //Converts a char into its proper number for board indexing
     //a is 97, j is 106. Want a to be 0 and j to be 9
-    if( column == 'a' ) {return 0;} //a to 0
-    else if( column == 'b' ) {return 1;} //b to 1
-    else if( column == 'c' ) {return 2;} //c to 2
-    else if( column == 'd' ) {return 3;} //d to 3
-    else if( column == 'e' ) {return 4;} //e to 4
-    else if( column == 'f' ) {return 5;} //f to 5
-    else if( column == 'g' ) {return 6;} //g to 6
-    else if( column == 'h' ) {return 7;} //h to 7
-    else if( column == 'i' ) {return 8;} //i to 8
-    else if( column == 'j' ) {return 9;} //j to 9
+    if( tolower(column) == 'a' ) {return 0;} //a to 0
+    else if( tolower(column) == 'b' ) {return 1;} //b to 1
+    else if( tolower(column) == 'c' ) {return 2;} //c to 2
+    else if( tolower(column) == 'd' ) {return 3;} //d to 3
+    else if( tolower(column) == 'e' ) {return 4;} //e to 4
+    else if( tolower(column) == 'f' ) {return 5;} //f to 5
+    else if( tolower(column) == 'g' ) {return 6;} //g to 6
+    else if( tolower(column) == 'h' ) {return 7;} //h to 7
+    else if( tolower(column) == 'i' ) {return 8;} //i to 8
+    else if( tolower(column) == 'j' ) {return 9;} //j to 9
     else { return -1; } //error
 }
 

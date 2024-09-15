@@ -61,6 +61,16 @@ shared_ptr<Ship> Player::getShip( const size_t shipSize ) {
     return shipArray[ shipSize - 1 ]; //return pointer to ship
 }
 
+shared_ptr<Ship> Player::getShip( const size_t shipSize ) const {
+//input: ship size to get (etc 1 for ship size 1, 2 for ship size 2)
+//output: ship pointer to ship of that size controlled by this player
+    if( (shipSize < 1) || ( shipSize > 5 ) ) { //checks if ship size is valid
+        return nullptr; //invalid
+    }
+    return shipArray[ shipSize - 1 ]; //return pointer to ship
+}
+
+
 void Player::setupShips() {
     //setup ships and their coordinates
     for( int i = 0; i < numofShips; i++ ) {

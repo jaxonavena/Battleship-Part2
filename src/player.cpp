@@ -17,7 +17,7 @@ using namespace std;
 #include "ships.hpp"
 #include <limits>
 
-size_t Player::convert_chartoIndex( char column ) {
+size_t Player::convert_chartoIndex( char column ) const {
     //Converts a char into its proper number for board indexing
     //a is 97, j is 106. Want a to be 0 and j to be 9
     if( tolower(column) == 'a' ) {return 0;} //a to 0

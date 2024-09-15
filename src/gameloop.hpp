@@ -6,7 +6,9 @@ Author: Team 9
 #ifndef GAMELOOP_H
 #define GAMELOOP_H
 
+#include <optional>
 #include "player.hpp"
+#include <utility>
 
 class GameplayLoop {
 
@@ -18,6 +20,7 @@ class GameplayLoop {
         Player playerOne;  
         Player playerTwo;
         short currentTurn;
+        std::pair<std::size_t, std::size_t> getShot() const;
         void playerOneTurn();
         void playerTwoTurn();
         bool gameOver() const;

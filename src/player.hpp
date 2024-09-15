@@ -23,7 +23,7 @@ class Player {
         shared_ptr<Ship> getShip( const size_t shipSize ) const;
         void setupShips();
         void print_Board(); //prints both top and bottom board
-        size_t convert_chartoIndex( char column ); //converts a column char to a 0 indexed size_t
+        size_t convert_chartoIndex( char column ) const; //converts a column char to a 0 indexed size_t
     private:
         string name; //name of the player
         array<shared_ptr<Ship>, 5> shipArray; //A std::array of shared pointers whose size is 5

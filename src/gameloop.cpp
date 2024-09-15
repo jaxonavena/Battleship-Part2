@@ -49,6 +49,10 @@ void GameplayLoop::playerOneTurn() {
     size_t shot_column = playerOne.convert_chartoIndex( column ); //0 indexed now
 }
 
+void GameplayLoop::playerTwoTurn() {
+    std::cout << "filler\n";
+}
+
 void GameplayLoop::start() {
 
     // Main loop
@@ -56,7 +60,7 @@ void GameplayLoop::start() {
         //Get the current player
         //(1 + 1) % 2 = 0 which is player one
         //(0 + 1) % 2 = 1 player two
-        currentTurn = ++currentTurn % 2;
+        ++currentTurn %= 2;
         //if currentTurn == 0
         if (!currentTurn) {
             playerOneTurn();

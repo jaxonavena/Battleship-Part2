@@ -8,8 +8,10 @@ add_executable(battleship)
 
 target_sources(battleship PRIVATE
     "src/main.cpp"
+    "src/gameloop.cpp"
     "src/setup.cpp"
     "src/player.cpp"
+    "src/board.cpp"
     "src/ships.cpp"
 )
 
@@ -19,6 +21,6 @@ target_include_directories(battleship PRIVATE
 )
 
 target_compile_options(battleship PRIVATE
-    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-g -Wall -Wextra -DCMAKE_EXPORT_COMPILE_COMMANDS=1> # Apply -O1 if the compiler is not MSVC
+    $<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-g -Wall -Wextra -DCMAKE_EXPORT_COMPILE_COMMANDS=1>
 )
 #Use this command to build: cmake -B build && make -C build

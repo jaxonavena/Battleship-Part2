@@ -84,7 +84,7 @@ void Player::setupShips() {
 
             //Loop to validate the column
             //!(cin >> fin) means cin to fin has failed in some way, while also grabbing input
-            while ( !(cin >> column ) || ( column > 'j' ) || ( column < 'a' ) ) {
+            while ( !(cin >> column ) || ( tolower(column) > 'j' ) || ( tolower(column) < 'a' ) ) {
                 //Clears the failure state and then throws everything out of the input stream
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
@@ -123,7 +123,7 @@ void Player::setupShips() {
 
                 //Loop to validate the column
                 //!(cin >> fin) means cin to fin has failed in some way, while also grabbing input
-                while ( !(cin >> column_pre ) || ( column_pre > 'j' ) || ( column_pre < 'a' ) ) {
+                while ( !(cin >> column_pre ) || ( tolower(column_pre) > 'j' ) || ( tolower(column_pre) < 'a' ) ) {
                     //Clears the failure state and then throws everything out of the input stream
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(),'\n');

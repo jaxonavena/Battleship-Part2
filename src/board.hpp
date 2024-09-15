@@ -17,7 +17,7 @@ protected:
 
 public:
 	Board(); // Initialiatize board
-	virtual ~Board() = default; // Board destructor
+	~Board() = default; // Board destructor
 	//void add_hit(std::pair<std::size_t, std::size_t>);
 	//void add_miss(std::pair<std::size_t, std::size_t>);
 	void print() const;

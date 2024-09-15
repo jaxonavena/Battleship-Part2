@@ -16,7 +16,33 @@ GameplayLoop::GameplayLoop(Player&& p1, Player&& p2) :
                            currentTurn(1){} //this moves the player objects 
 
 bool GameplayLoop::gameOver() const {
-    return true; //TODO
+    // Iterate through both players' ships and return true iff all ships are sunk for one player
+    int numShips = playerOne.getNumShips();
+    bool playerOneSunk = true;
+    bool playerTwoSunk = true;
+    for (int i = 1; i < numShips + 1; i++) {
+        if (!(playerOne.getShip(i)->is_sunk())) {
+            playerOneSunk = false;
+        }
+    }
+    for (int i = 1; i < numShips + 1; i++) {
+        if (!(playerTwo.getShip(i)->is_sunk())) {
+            playerTwoSunk = false;
+        }
+    }
+    if (playerOneSunk) {
+        std::cout << playerOne.returnName() << "'s ships have been sunk. "
+                  << playerTwo.returnName() << " wins!" << std::endl;
+        return true;
+    }
+    else if (playerTwoSunk) {
+        std::cout << playerTwo.returnName() << "'s ships have been sunk. "
+                  << playerOne.returnName() << " wins!" << std::endl;
+        return true;
+    }
+    else {
+        return false;
+    }
 }
 
 void GameplayLoop::playerOneTurn() {

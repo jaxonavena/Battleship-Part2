@@ -1,3 +1,10 @@
+/*
+Program: Ship class
+Description: This class represents the ships within the game.  A ship is
+respobsible for knowing its coords and its hit status, so players can
+query the boats to see if they are sunk.
+Author: Team 9
+*/
 #include <vector>
 #include <utility>
 #include "ships.hpp"
@@ -9,11 +16,11 @@ Ship::Ship(const std::size_t size) : shipSize(size) {
 
 // Place the ship on the board
 bool Ship::place(std::vector<std::pair<std::size_t, std::size_t>>& coords) {
-  if (coords.size() != shipSize) {
+  if (coords.size() != shipSize) { //make sure coords and ship are same size
     return false;
   }
   for (std::size_t i = 0; i < shipSize; i++) {
-    spaces[i] = {coords[i], false};
+    spaces[i] = {coords[i], false}; //update spaces to match, and unhit
   }
   return true;
 }
@@ -27,7 +34,7 @@ void Ship::remove() {
 void Ship::hit(std::pair<std::size_t, std::size_t>& coord) {
   for (auto& space : spaces) {
     if (coord == space.first) {
-      space.second = true;
+      space.second = true; //space.second is bool for hit/not hit
       return;
     }
   }

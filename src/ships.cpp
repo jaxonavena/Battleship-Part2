@@ -1,56 +1,82 @@
 /*
-Program: Header file for ship class
-Description: Contains methods implemented within the Ship class.
+Program: Ship class
+Description: This class represents the ships within the game.  A ship is
+respobsible for knowing its coords and its hit status, so players can
+query the boats to see if they are sunk.
 Author: Team 9
 */
-#ifndef SHIPS_HPP
-#define SHIPS_HPP
-//prevents duplicate inclusion
 #include <vector>
 #include <utility>
+#include "ships.hpp"
 
-class Ship {
-protected:
-    std::vector<std::pair<std::pair<std::size_t, std::size_t>, bool>> spaces; // Spaces the ship controls along with their hit status
-    std::size_t shipSize; // Size of the ship
+  // Initialize ship based on size
+Ship::Ship(const std::size_t size) : shipSize(size) {
+  spaces.resize(size); // Give the ship enough space for its size
+}
 
-public:
-  Ship(const std::size_t size); // Initialiatize ship with given size
-  virtual ~Ship() = default; // Ship destructor
-  bool place(std::vector<std::pair<std::size_t, std::size_t>>& coords); // Places the ship by giving it the coordinates it controls
-  void remove(void); // When the ship needs to be removed from the board
-  void hit(std::pair<std::size_t, std::size_t>& coord); // Hit a space occupied by the ship
-  bool valid_space(const std::pair<std::size_t, std::size_t>& coord) const; // Check if a given coordinate is occupied by this ship
-  bool is_hit(const std::pair<std::size_t, std::size_t>& coord) const; // Check if a given space occupied by this ship is hit
-  bool is_sunk(void) const; // Check if the ship has been sunk
-  std::vector<std::pair<std::pair<std::size_t, std::size_t>, bool>>& get_spaces(void); // Returns this ship's spaces and hit status's
+// Place the ship on the board
+bool Ship::place(std::vector<std::pair<std::size_t, std::size_t>>& coords) {
+  if (coords.size() != shipSize) { //make sure coords and ship are same size
+    return false;
+  }
+  for (std::size_t i = 0; i < shipSize; i++) {
+    spaces[i] = {coords[i], false}; //update spaces to match, and unhit
+  }
+  return true;
+}
 
-};
+// Remove the ship from the board if we need to during setup
+void Ship::remove() {
+  spaces.clear();
+}
 
-// Constructors of ships of sizes 1x1 (One) through 1x5 (Five)
-class OneShip : public Ship {
-public:
-    OneShip(); 
-};
+ // Hit a space occupied by the ship
+void Ship::hit(std::pair<std::size_t, std::size_t>& coord) {
+  for (auto& space : spaces) {
+    if (coord == space.first) {
+      space.second = true; //space.second is bool for hit/not hit
+      return;
+    }
+  }
+}
 
-class TwoShip : public Ship {
-public:
-    TwoShip(); 
-};
+// Check a coordinate for being controlled by this ship
+bool Ship::valid_space(const std::pair<std::size_t, std::size_t>& coord) const {
+  for (const auto& space : spaces) {
+    if (coord == space.first) {
+      return true;
+    }
+  }
+  return false;
+}
 
-class ThreeShip : public Ship {
-public:
-    ThreeShip();
-};
+// Check a coordinate for being hit
+bool Ship::is_hit(const std::pair<std::size_t, std::size_t>& coord) const {
+  for (const auto& space : spaces) {
+    if (coord == space.first)
+      return space.second;
+  }
+  return false;
+}
 
-class FourShip : public Ship {
-public:
-    FourShip();
-};
+// Check if the ship is sunk
+bool Ship::is_sunk() const { 
+  for (const auto& space : spaces) {
+    if (space.second == false) {
+      return false;
+    }
+  }
+  return true;
+}
 
-class FiveShip : public Ship {
-public:
-    FiveShip();
-};
+// Returns this ship's spaces and hit status's
+std::vector<std::pair<std::pair<std::size_t, std::size_t>, bool>>& Ship::get_spaces() {
+  return spaces;
+}
 
-#endif // SHIPS_HPP
+
+OneShip::OneShip() : Ship(1) {}  // Call the base class constructor with size 1
+TwoShip::TwoShip() : Ship(2) {}  // Call the base class constructor with size 2
+ThreeShip::ThreeShip() : Ship(3) {}  // Call the base class constructor with size 3
+FourShip::FourShip() : Ship(4) {}  // Call the base class constructor with size 4
+FiveShip::FiveShip() : Ship(5) {}  // Call the base class constructor with size 5

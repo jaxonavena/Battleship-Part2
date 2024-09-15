@@ -19,6 +19,7 @@ class Player {
         Player( const string& named, const int numShips);  
         string returnName() const;
         int getNumShips() const;
+        char getCellTopBoard(const size_t row, const size_t col) const;
         shared_ptr<Ship> getShip( const size_t shipSize );
         shared_ptr<Ship> getShip( const size_t shipSize ) const;
         void setupShips();
@@ -28,8 +29,8 @@ class Player {
         string name; //name of the player
         array<shared_ptr<Ship>, 5> shipArray; //A std::array of shared pointers whose size is 5
         int numofShips;
-        unique_ptr<Board> top_board;    //top board, shows this player's shots and hits
-        unique_ptr<Board> bottom_board; //bottom board, shows this player's ships
+        Board top_board;    //top board, shows this player's shots and hits
+        Board bottom_board; //bottom board, shows this player's ships
 };
 
 #endif

@@ -5,6 +5,7 @@ A player controls two boards, and the boards keep track of hits/misses in
 a grid.  The board is 10 x 10.
 Author: Team 9
 */
+#include <array>
 #include <vector>
 #include <utility>
 #include <iostream>
@@ -16,6 +17,10 @@ Board::Board() {
 			board[i][j] = '_'; //init board spaces with underscore
 		}
 	}
+}
+
+char Board::getCell(const std::size_t row, const std::size_t col) const { //Gets the current value in a cell
+    return board[row][col];
 }
 
 void Board::print() const {

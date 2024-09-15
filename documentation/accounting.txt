@@ -26,3 +26,6 @@ Caden LeCluyse: 3:15-3:45, 30 minutes. Converted all ints to size_t except the n
 
 9/14/2024:
 Caden LeCluyse: 3:50-4:20, 30 minutes. Started making the gameplay loop.
+
+9/15/2024:
+Jesse DeBok: 1:00 PM - 3:00 PM, 2 hours.  Finished setup and cleaned up edge cases.  Fixed indexing and now columns are labeled by their character names.

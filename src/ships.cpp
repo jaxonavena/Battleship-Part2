@@ -31,7 +31,7 @@ void Ship::remove() {
 }
 
  // Hit a space occupied by the ship
-void Ship::hit(std::pair<std::size_t, std::size_t>& coord) {
+void Ship::hit(const std::pair<std::size_t, std::size_t>& coord) {
   for (auto& space : spaces) {
     if (coord == space.first) {
       space.second = true; //space.second is bool for hit/not hit

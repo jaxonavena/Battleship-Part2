@@ -19,7 +19,7 @@ public:
   virtual ~Ship() = default; // Ship destructor
   bool place(std::vector<std::pair<std::size_t, std::size_t>>& coords); // Places the ship by giving it the coordinates it controls
   void remove(void); // When the ship needs to be removed from the board
-  void hit(std::pair<std::size_t, std::size_t>& coord); // Hit a space occupied by the ship
+  void hit(const std::pair<std::size_t, std::size_t>& coord); // Hit a space occupied by the ship
   bool valid_space(const std::pair<std::size_t, std::size_t>& coord) const; // Check if a given coordinate is occupied by this ship
   bool is_hit(const std::pair<std::size_t, std::size_t>& coord) const; // Check if a given space occupied by this ship is hit
   bool is_sunk(void) const; // Check if the ship has been sunk

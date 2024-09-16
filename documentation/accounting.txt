@@ -12,6 +12,7 @@ Ben Schulte: 1 hour, finished work on ships.cpp, and created and finished work o
 Ben Schulte: 30 minutes, debugged and tested Ship class functionalites. Put files for class on Github
 Jesse DeBok: 5:18 - 6:18, 1 hour.  Created player class and tried to get setup to mesh with ships.
 Caden LeCluyse: 8 - 9:30, 1.5 hours. Created Setup namespace and finished setup. Added some const correctness.
+Jack Ford: 9 - 10:15, 1.25 hours. Setup some board things.
 
 9/11/2024:
 Caden LeCluyse: 11:15-11:30, 15 minutes. Changed cin to getline for getting player name.
@@ -23,9 +24,13 @@ Caden LeCluyse: 5-6:15, 1.25 hours. Split all files into header and cpp files. C
 
 9/13/2024:
 Caden LeCluyse: 3:15-3:45, 30 minutes. Converted all ints to size_t except the number of ships. We could convert numShips to an unsigned int to avoid casting or we can just cast it like I did.
+Jack Ford: 4:30 - 4:40, 10 minutes. Thought about and researched ways to improve the board files.
+Jack Ford: 6 - 7:15, 1.25 hours. Made those improvements.
 
 9/14/2024:
 Caden LeCluyse: 3:50-4:20, 30 minutes. Started making the gameplay loop.
 
 9/15/2024:
 Jesse DeBok: 1:00 PM - 3:00 PM, 2 hours.  Finished setup and cleaned up edge cases.  Fixed indexing and now columns are labeled by their character names.
+Jack Ford: 5:15 - 7, 1.75 hours. Cleared screen before each player sees it and printed board at each turn.
+Jack Ford: 9 - 9:30, 30 minutes. Added comments and checked the state of the project.

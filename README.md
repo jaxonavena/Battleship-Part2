@@ -17,3 +17,6 @@ Setup: Class to control the setup process.  This breaks up the setup into its ow
 
 Ships: This class controls the ship objects.  Methods here impact each ship object, which the players have control of, both on their board and in
 a ship pointer array.  Each ship is in charge of knowing where it is and its hit status.
+
+Gameplay: In order to keep it secret, this gameplay style is hot seat.  This means two players are sitting at the same terminal playing the game.
+After a player takes a shot, they wait a few seconds (to swap the seat), then the next player goes.

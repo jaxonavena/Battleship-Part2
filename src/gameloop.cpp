@@ -91,11 +91,14 @@ void GameplayLoop::playerOneTurn() {
     }
 
     if (flag > 0) {
+        //hit
+        std::cout << "Player 1 Hit!" << std::endl;
         playerOne.top_board.update(coord, true); //update board
         playerTwo.getShip(flag)->hit(coord); //hit the ship
         playerTwo.bottom_board.update(coord, true); //update bottom board
     }
     else {
+        std::cout << "Player 1 Miss!" << std::endl;
         playerOne.top_board.update(coord, false); //update with miss
         playerTwo.bottom_board.update(coord, false); //update with miss
     }
@@ -121,11 +124,13 @@ void GameplayLoop::playerTwoTurn() {
     }
 
     if (flag > 0) { //ship has been hit
+        std::cout << "Player 2 Hit!" << std::endl;
         playerTwo.top_board.update(coord, true); //update board
         playerOne.getShip(flag)->hit(coord); //hit the ship
         playerOne.bottom_board.update(coord, true); //update bottom board
     }
     else {
+        std::cout << "Player 2 Miss!" << std::endl;
         playerTwo.top_board.update(coord, false); //update top board no hit
         playerOne.bottom_board.update(coord, false); //update bottom board no hit
     }

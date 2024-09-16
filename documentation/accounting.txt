@@ -33,4 +33,4 @@ Caden LeCluyse: 3:50-4:20, 30 minutes. Started making the gameplay loop.
 9/15/2024:
 Jesse DeBok: 1:00 PM - 3:00 PM, 2 hours.  Finished setup and cleaned up edge cases.  Fixed indexing and now columns are labeled by their character names.
 Jack Ford: 5:15 - 7, 1.75 hours. Cleared screen before each player sees it and printed board at each turn.
-Jack Ford: 9 - 9:30, 30 minutes. Added comments and checked the state of the project.
+Jack Ford: 9 - 9:45, 45 minutes. Added comments and checked the state of the project and updated the setup of the bottom board.

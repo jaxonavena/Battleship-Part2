@@ -84,7 +84,7 @@ void GameplayLoop::playerOneTurn() {
     int flag = 0;
 
     for (int i = 1; i < playerOne.getNumShips() + 1; i++) {
-        if (playerTwo.getShip(i)->is_hit(coord)) { //if is_hit, update board and ship
+        if (playerTwo.getShip(i)->valid_space(coord)) { //if is_hit, update board and ship
             flag = i;
             break;
         }
@@ -112,7 +112,7 @@ void GameplayLoop::playerTwoTurn() {
     int flag = 0;
 
     for (int i = 1; i < playerOne.getNumShips() + 1; i++) {
-        if (playerOne.getShip(i)->is_hit(coord)) { //if is_hit, update board and ship
+        if (playerOne.getShip(i)->valid_space(coord)) { //if is_hit, update board and ship
             flag = i;
             break;
         }

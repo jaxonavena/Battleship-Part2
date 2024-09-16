@@ -89,12 +89,12 @@ void GameplayLoop::playerOneTurn() {
     }
 
     if (flag > -1) {
-        playerOne.get_top_board().update(coord, true); //std::make_pair(row, col), true); //playerOne.shipArray[i].is_hit(std::pair<row, col> coord)); //update board
+        playerOne.top_board.update(coord, true); //std::make_pair(row, col), true); //playerOne.shipArray[i].is_hit(std::pair<row, col> coord)); //update board
         playerOne.getShip(flag + 1)->hit(coord); //std::make_pair(row, col)); //hit the ship
     }
 
     else {
-        playerOne.get_top_board().update(coord, false); //std::make_pair(row, col), false);
+        playerOne.top_board.update(coord, false); //std::make_pair(row, col), false);
     }
 
     playerOne.print_Board(); //reprint board(s)
@@ -116,12 +116,12 @@ void GameplayLoop::playerTwoTurn() {
     }
 
     if (flag > -1) {
-        playerTwo.get_top_board().update(coord, true); //std::make_pair(row, col), true); //playerOne.shipArray[i].is_hit(std::pair<row, col> coord)); //update board
+        playerTwo.top_board.update(coord, true); //std::make_pair(row, col), true); //playerOne.shipArray[i].is_hit(std::pair<row, col> coord)); //update board
         playerTwo.getShip(flag + 1)->hit(coord); //std::make_pair(row, col)); //hit the ship
     }
 
     else {
-        playerTwo.get_top_board().update(coord, false); //std::make_pair(row, col), false);
+        playerTwo.top_board.update(coord, false); //std::make_pair(row, col), false);
     }
 
     playerTwo.print_Board(); //reprint board(s)

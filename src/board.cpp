@@ -48,34 +48,6 @@ void Board::print() const {
 	}
 }
 
-/*
-//prints out bottom board but hides where the ships are.
-void Board::print_for_opponent() const {
-    std::cout << "\n  |A|B|C|D|E|F|G|H|I|J|" << std::endl; //print out top row with labels
-	for (std::size_t i = 0; i < 10; i++) { //loop through the rows of the board
-		if (i == 9) {
-			std::cout << std::to_string(i + 1); //since 10 is 1 char bigger, need a special case to line up
-		}
-
-		else {
-		    std::cout << " " << std::to_string(i + 1); //otherwise, just print out space then i
-		}
-
-		    for (std::size_t j = 0; j < 10; j++) { //loop through the columns of the board
-			if (board[i][j] == 'S') { //check for a ship in the cell
-				std::cout << "|_"; //blank the cell if there is a ship
-			}
-
-			else {
-				std::cout << '|' << board[i][j]; //separate the cell
-			}
-		}
-
-		std::cout << "|\n"; //new line
-	}
-}
-*/
-
 void Board::update(const std::pair<std::size_t, std::size_t>& coord, const bool is_hit) {
     //updates the board with a hit or miss
 	const std::size_t row = coord.first; //gets the row to update

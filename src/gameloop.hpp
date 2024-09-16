@@ -17,14 +17,14 @@ class GameplayLoop {
         void start(); //Main loop
 
     private:
-        Player playerOne;  
-        Player playerTwo;
-        short currentTurn;
-        bool verifyShot(const std::size_t row, const std::size_t col) const;
-        std::pair<std::size_t, std::size_t> getShot() const;
-        void playerOneTurn();
-        void playerTwoTurn();
-        bool gameOver() const;
+        Player playerOne;  //control player within loop class, get from main
+        Player playerTwo;  //as above
+        short currentTurn; //either 1 or 2
+        bool verifyShot(const std::size_t row, const std::size_t col) const; //verify a shot as valid
+        std::pair<std::size_t, std::size_t> getShot() const; //get a shot as the correct type
+        void playerOneTurn(); //take player one turn
+        void playerTwoTurn(); //take player two turn
+        bool gameOver() const; //check if the game is over, if so return true, otherwise false.
 };
 
 #endif

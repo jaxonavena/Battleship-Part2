@@ -12,7 +12,7 @@ Author: Team 9
 
 class Board {
 protected:
-    std::array<std::array<char, 10>, 10> board;
+    std::array<std::array<char, 10>, 10> board; //the board
 
 public:
 	Board(); // Initialiatize board

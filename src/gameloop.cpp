@@ -78,23 +78,23 @@ void GameplayLoop::playerOneTurn() {
     //Player 1 takes their turn
     std::cout << "Player 1's Turn." << std::endl;
     playerOne.print_Board(); //print player 1's board
-    std::pair<std::size_t, std::size_t> coord = getShot();//const auto [row, col] = getShot(); //Structured binding that gets the shot from the user
+    std::pair<std::size_t, std::size_t> coord = getShot();//pair that gets the shot from the user
 
-    int flag = -1;
+    int flag = 0;
 
-    for (int i = 0; i < 5; i++) {
-        if (playerOne.getShip(i + 1)->is_hit(coord)) { //std::make_pair(row, col))) { //if is_hit, update board and ship
+    for (int i = 1; i < playerOne.getNumShips() + 1; i++) {
+        if (playerTwo.getShip(i)->is_hit(coord)) { //if is_hit, update board and ship
             flag = i;
+            break;
         }
     }
 
-    if (flag > -1) {
-        playerOne.top_board.update(coord, true); //std::make_pair(row, col), true); //playerOne.shipArray[i].is_hit(std::pair<row, col> coord)); //update board
-        playerOne.getShip(flag + 1)->hit(coord); //std::make_pair(row, col)); //hit the ship
+    if (flag > 0) {
+        playerOne.top_board.update(coord, true); //update board
+        playerTwo.getShip(flag)->hit(coord); //hit the ship
     }
-
     else {
-        playerOne.top_board.update(coord, false); //std::make_pair(row, col), false);
+        playerOne.top_board.update(coord, false);
     }
 
     playerOne.print_Board(); //reprint board(s)
@@ -105,23 +105,23 @@ void GameplayLoop::playerTwoTurn() {
     //Player 2 takes their turn
     std::cout << "Player 2's Turn." << std::endl;
     playerTwo.print_Board(); //print player 2's board
-    std::pair<std::size_t, std::size_t> coord = getShot(); //const auto [row, col] = getShot(); //Structured binding that gets the shot from the user
+    std::pair<std::size_t, std::size_t> coord = getShot(); //pair that gets the shot from the user
 
-    int flag = -1;
+    int flag = 0;
 
-    for (int i = 0; i < 5; i++) {
-        if (playerTwo.getShip(i + 1)->is_hit(coord)) { //std::make_pair(row, col))) { //if is_hit, update board and ship
+    for (int i = 1; i < playerOne.getNumShips() + 1; i++) {
+        if (playerOne.getShip(i)->is_hit(coord)) { //if is_hit, update board and ship
             flag = i;
+            break;
         }
     }
 
-    if (flag > -1) {
-        playerTwo.top_board.update(coord, true); //std::make_pair(row, col), true); //playerOne.shipArray[i].is_hit(std::pair<row, col> coord)); //update board
-        playerTwo.getShip(flag + 1)->hit(coord); //std::make_pair(row, col)); //hit the ship
+    if (flag > 0) {
+        playerTwo.top_board.update(coord, true); //update board
+        playerOne.getShip(flag)->hit(coord); //hit the ship
     }
-
     else {
-        playerTwo.top_board.update(coord, false); //std::make_pair(row, col), false);
+        playerTwo.top_board.update(coord, false);
     }
 
     playerTwo.print_Board(); //reprint board(s)
@@ -130,7 +130,7 @@ void GameplayLoop::playerTwoTurn() {
 
 bool GameplayLoop::gameOver() const {
     // Iterate through both players' ships and return true iff all ships are sunk for one player
-    int numShips = playerOne.getNumShips();
+    const int numShips = playerOne.getNumShips();
     bool playerOneSunk = true;
     bool playerTwoSunk = true;
     for (int i = 1; i < numShips + 1; i++) {

@@ -19,7 +19,7 @@ using namespace std;
 
 int main() {
     
-    cout << "Hello and welcome to Project 1 581: 2 player battleship!" << endl;
+    cout << "Hello and welcome to Project 1 581: 2 player battleship!" << endl; //welcome sign
     
     const int numShips = Setup::getNumShips(); //returns correct number of ships
     

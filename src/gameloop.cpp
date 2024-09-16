@@ -93,9 +93,11 @@ void GameplayLoop::playerOneTurn() {
     if (flag > 0) {
         playerOne.top_board.update(coord, true); //update board
         playerTwo.getShip(flag)->hit(coord); //hit the ship
+        playerTwo.bottom_board.update(coord, true);
     }
     else {
         playerOne.top_board.update(coord, false);
+        playerTwo.bottom_board.update(coord, false);
     }
 
     playerOne.print_Board(); //reprint board(s)
@@ -121,9 +123,11 @@ void GameplayLoop::playerTwoTurn() {
     if (flag > 0) {
         playerTwo.top_board.update(coord, true); //update board
         playerOne.getShip(flag)->hit(coord); //hit the ship
+        playerOne.bottom_board.update(coord, true);
     }
     else {
         playerTwo.top_board.update(coord, false);
+        playerOne.bottom_board.update(coord, false);
     }
 
     playerTwo.print_Board(); //reprint board(s)

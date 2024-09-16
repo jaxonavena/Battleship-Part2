@@ -20,6 +20,7 @@ using namespace std;
 size_t Player::convert_chartoIndex( char column ) const {
     //Converts a char into its proper number for board indexing
     //a is 97, j is 106. Want a to be 0 and j to be 9
+    //use tolower so user can put caps or lower case
     if( tolower(column) == 'a' ) {return 0;} //a to 0
     else if( tolower(column) == 'b' ) {return 1;} //b to 1
     else if( tolower(column) == 'c' ) {return 2;} //c to 2

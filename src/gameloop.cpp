@@ -11,6 +11,7 @@ Author: Team 9
 
 #include <iostream>
 #include <limits>
+#include <unistd.h>
 #include <utility>
 
 //Initialize gameplay loop by taking rvalue refs 
@@ -98,6 +99,7 @@ void GameplayLoop::playerOneTurn() {
     }
 
     playerOne.print_Board(); //reprint board(s)
+    sleep(4);
     system("clear"); //clear the terminal before the next action
 }
 
@@ -125,6 +127,7 @@ void GameplayLoop::playerTwoTurn() {
     }
 
     playerTwo.print_Board(); //reprint board(s)
+    sleep(4);
     system("clear"); //clear the terminal before the next action
 }
 

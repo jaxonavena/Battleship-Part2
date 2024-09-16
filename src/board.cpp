@@ -48,6 +48,7 @@ void Board::print() const {
 	}
 }
 
+/*
 //prints out bottom board but hides where the ships are.
 void Board::print_for_opponent() const {
     std::cout << "\n  |A|B|C|D|E|F|G|H|I|J|" << std::endl; //print out top row with labels
@@ -73,6 +74,7 @@ void Board::print_for_opponent() const {
 		std::cout << "|\n"; //new line
 	}
 }
+*/
 
 void Board::update(const std::pair<std::size_t, std::size_t>& coord, const bool is_hit) {
     //updates the board with a hit or miss

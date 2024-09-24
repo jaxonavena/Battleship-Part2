@@ -1,7 +1,7 @@
 #include "ai.hpp"
 
 // constructor definition
-AI::AI(int difficulty) : difficulty(difficulty) {}
+AI::AI(int difficulty) : Player(int numShips), difficulty(int difficulty) {}
 
 // getters
 int AI::getDifficulty() const {

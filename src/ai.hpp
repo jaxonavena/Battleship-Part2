@@ -1,9 +1,10 @@
 #ifndef AI_HPP
 #define AI_HPP
 
+#include "player.hpp"
 #include <string>
 
-class AI {
+class AI : public Player {
 public:
   // constructor
   AI(int difficulty);

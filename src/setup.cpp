@@ -40,7 +40,7 @@ namespace Setup {
 
 //This function will initialize one of the players
 //Takes the number of ships as a parameter
-[[nodiscard]] std::optional<Player> initializePlayer(const int numShips, int ai_difficulty = 0, bool is_ai = false) {
+[[nodiscard]] std::optional<Player> initializePlayer(const int numShips, int ai_difficulty, bool is_ai) {
     std::string name; //Name of the player that we will receive
     if (is_ai) {
       return Player("Tim", numShips, ai_difficulty, is_ai);

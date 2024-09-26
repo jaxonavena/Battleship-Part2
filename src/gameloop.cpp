@@ -21,11 +21,6 @@ GameplayLoop::GameplayLoop(Player&& p1, Player&& p2) :  //use references to prev
                            playerOne(move(p1)), playerTwo(move(p2)), //create players within this class.
                            currentTurn(1){} //this moves the player objects
 
-//Initialize gameplay loop by taking rvalue refs
-GameplayLoop::GameplayLoop(Player&& p1, AI&& ai) :  //use references to prevent memory issues
-                           playerOne(move(p1)), playerTwo(move(p2)), //create players within this class.
-                           currentTurn(1){} //this moves the player objects
-
 //Simple function that returns true if a shot is valid to take
 bool GameplayLoop::verifyShot(const size_t row, const size_t col) const {
     //If the cell of the top board is X or O that means the shot has already been taken
@@ -147,37 +142,37 @@ void GameplayLoop::playerTwoTurn() {
     system("clear"); //clear the terminal before the next action
 }
 
-void GameplayLoop::AI_Turn() {
-    //Player 2 takes their turn
-    cout << "AI's Turn." << endl; //output player's board
-    ai.print_Board(); //print player 2's board
-    pair<size_t, size_t> coord = getShot(); //pair that gets the shot from the user
+// void GameplayLoop::AI_Turn() {
+//     //Player 2 takes their turn
+//     cout << "AI's Turn." << endl; //output player's board
+//     ai.print_Board(); //print player 2's board
+//     pair<size_t, size_t> coord = getShot(); //pair that gets the shot from the user
 
-    int flag = 0; //output ship
+//     int flag = 0; //output ship
 
-    for (int i = 1; i < playerOne.getNumShips() + 1; i++) {
-        if (playerOne.getShip(i)->valid_space(coord)) { //if is_hit, update board and ship
-            flag = i; //which ship has been hit
-            break; //exit loop
-        }
-    }
+//     for (int i = 1; i < playerOne.getNumShips() + 1; i++) {
+//         if (playerOne.getShip(i)->valid_space(coord)) { //if is_hit, update board and ship
+//             flag = i; //which ship has been hit
+//             break; //exit loop
+//         }
+//     }
 
-    if (flag > 0) { //ship has been hit
-        cout << "AI Hit!" << endl;
-        ai.top_board.update(coord, true); //update board
-        playerOne.getShip(flag)->hit(coord); //hit the ship
-        playerOne.bottom_board.update(coord, true); //update bottom board
-    }
-    else {
-        cout << "AI Miss!" << endl;
-        ai.top_board.update(coord, false); //update top board no hit
-        playerOne.bottom_board.update(coord, false); //update bottom board no hit
-    }
+//     if (flag > 0) { //ship has been hit
+//         cout << "AI Hit!" << endl;
+//         ai.top_board.update(coord, true); //update board
+//         playerOne.getShip(flag)->hit(coord); //hit the ship
+//         playerOne.bottom_board.update(coord, true); //update bottom board
+//     }
+//     else {
+//         cout << "AI Miss!" << endl;
+//         ai.top_board.update(coord, false); //update top board no hit
+//         playerOne.bottom_board.update(coord, false); //update bottom board no hit
+//     }
 
-    ai.print_Board(); //reprint board(s)
-    sleep(4); //sleep for hot seat.
-    system("clear"); //clear the terminal before the next action
-}
+//     ai.print_Board(); //reprint board(s)
+//     sleep(4); //sleep for hot seat.
+//     system("clear"); //clear the terminal before the next action
+// }
 
 bool GameplayLoop::gameOver() const {
     // Iterate through both players' ships and return true iff (if and onl if) all ships are sunk for one player

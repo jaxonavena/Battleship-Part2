@@ -64,7 +64,7 @@ int main() {
     if (use_ai == 'y' || use_ai == 'y') {
       cout << "\n\n\n\n\n\n\nSetting up AI..." << endl;
 
-      optional<AI> ai = Setup::initializeAI(ai_difficulty, numShips);
+      optional<Player> ai = Setup::initializePlayer(numShips, ai_difficulty, true);
 
       if ( !ai ) {
           return 1;

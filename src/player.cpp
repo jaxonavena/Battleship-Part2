@@ -34,9 +34,11 @@ size_t Player::convert_chartoIndex( char column ) const {
     else { return -1; } //error
 }
 
-Player::Player( const string& named , const int numShips ) { //Player constructor from player name and number of ships
+Player::Player( const string& named , const int numShips, int ai_difficulty = 0, bool is_ai = false) { //Player constructor from player name and number of ships
     name = named; //player's name
     numofShips = numShips; //number of ships this player controls
+    this_ai_difficulty = ai_difficulty;
+    this_is_ai = is_ai;
 }
 
 string Player::returnName() const {

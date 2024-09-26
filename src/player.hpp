@@ -20,11 +20,16 @@ class Player {
         string returnName() const; //get player name (const) as won't change
         int getNumShips() const;   //get number of ships this player controls
         char getCellTopBoard(const size_t row, const size_t col) const; //get top board for gameplay loop
+
         Board get_top_board(); //getter for the top board
         Board get_bottom_board(); //getter for the bottom board
+
         shared_ptr<Ship> getShip( const size_t shipSize ); //get modifiable ship
         shared_ptr<Ship> getShip( const size_t shipSize ) const; //get ship as a const (for memory safe use)
+
         void setupShips(); //transfer control of ship control to player class
+        void setupAIShips();
+
         void print_Board(); //prints both top and bottom board
         size_t convert_chartoIndex( char column ) const; //converts a column char to a 0 indexed size_t
         Board top_board;    //top board, shows this player's shots and hits

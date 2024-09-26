@@ -261,3 +261,81 @@ void Player::setupShips() {
         cin.ignore(numeric_limits<streamsize>::max(),'\n'); //clear input stream
     }
 }
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#include <cstdlib> // for rand()
+#include <ctime>   // for time()
+
+void Player::setupAIShips() {
+    // Seed random number generator
+    srand(static_cast<unsigned int>(time(0)));
+
+    for (int i = 0; i < numofShips; i++) {
+        // Create ship of size i + 1
+        shared_ptr<Ship> s1 = make_shared<Ship>(i + 1);
+        vector<pair<size_t, size_t>> coords(i + 1);
+        bool validPlacement = false;
+
+        while (!validPlacement) {
+            size_t row = rand() % 10; // Random row (0-9)
+            size_t column = rand() % 10; // Random column (0-9)
+            size_t direction = rand() % 4; // Random direction (0-3)
+
+            // Determine ship coordinates based on the random direction
+            for (size_t j = 0; j <= static_cast<size_t>(i); j++) {
+                if (direction == 0) { // Up
+                    coords[j] = {row - j, column};
+                } else if (direction == 1) { // Right
+                    coords[j] = {row, column + j};
+                } else if (direction == 2) { // Down
+                    coords[j] = {row + j, column};
+                } else { // Left
+                    coords[j] = {row, column - j};
+                }
+            }
+
+            // Check if all coordinates are within bounds
+            bool outOfBounds = false;
+            for (const auto& coord : coords) {
+                if (coord.first >= 10 || coord.second >= 10) {
+                    outOfBounds = true;
+                    break;
+                }
+            }
+
+            // Check for overlapping with other ships
+            bool hittingOther = false;
+            if (!outOfBounds) {
+                for (size_t j = 0; j < static_cast<size_t>(i); j++) {
+                    shared_ptr<Ship> shipToCheck = shipArray[j];
+                    for (const auto& coord : coords) {
+                        if (shipToCheck->valid_space(coord)) {
+                            hittingOther = true;
+                            break;
+                        }
+                    }
+                    if (hittingOther) break;
+                }
+            }
+
+            // If no issues, place the ship
+            if (!outOfBounds && !hittingOther) {
+                validPlacement = true;
+                s1->place(coords); // Place ship in ship array
+                bottom_board.place_ship(coords); // Update board with ship
+            }
+        }
+
+        shipArray[i] = s1; // Place ship in array
+    }
+}

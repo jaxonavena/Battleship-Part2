@@ -46,6 +46,9 @@ namespace Setup {
       return Player("Tim", numShips, ai_difficulty, is_ai);
     }
     else {
+      cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
+
       std::cout << "Please type your name: ";
 
           //If some error has ocurred, return a nullopt
@@ -60,21 +63,5 @@ namespace Setup {
 
 
 }
-
-// //This function will initialize an AI opponent
-// //Takes the number of ships and ai_difficulty as a parameters
-// [[nodiscard]] std::optional<AI> initializeAI(int ai_difficulty, const int numShips) {
-//     // std::string name; //Name of the player that we will receive
-//     // std::cout << "Please type your name: ";
-
-//     //If some error has ocurred, return a nullopt
-//     // if ( !(std::getline(std::cin, name)) ) {
-//     //     std::cout << "A catastrophic error has ocurred!" << std::endl;
-//     //     return std::nullopt;
-//     // }
-
-//     //Return the player name and ships as a player object
-//     return AI(ai_difficulty, numShips);
-// }
 
 }

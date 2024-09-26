@@ -71,7 +71,7 @@ int main() {
       }
 
       // ai->setDifficulty(ai_difficulty);
-      ai->setupShips(); //setup ships within ai
+      ai->setupAIShips(); //setup ships within ai
       ai->print_Board(); //TMP
 
       sleep(3);

@@ -41,6 +41,7 @@ Player::Player( const string& named , const int numShips, int ai_difficulty, boo
     this_is_ai = is_ai;
 }
 
+
 string Player::returnName() const {
     return name; //return name
 }
@@ -75,7 +76,6 @@ shared_ptr<Ship> Player::getShip( const size_t shipSize ) const {
     }
     return shipArray[ shipSize - 1 ]; //return pointer to ship
 }
-
 
 void Player::setupShips() {
     //setup ships and their coordinates

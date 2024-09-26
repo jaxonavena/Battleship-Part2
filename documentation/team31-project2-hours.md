@@ -8,3 +8,9 @@ Set up our forked repo and initialized the AI class after doing a couple playthr
 ```
 Worked on getting input for the AI opponent difficulty and actually wiring up the initialization of the AI opponent. WIP.
 ```
+
+9/25 1.5 hour
+```
+Began implementing AI functionality -- having it take turns and whatnot.
+Hopped on a call with Pete to see if I could explain and hand off a bug to him to help fix.
+```

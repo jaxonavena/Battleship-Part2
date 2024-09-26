@@ -7,7 +7,7 @@
 class AI : public Player {
 public:
   // constructor
-  AI(int difficulty);
+  AI(int difficulty, const int numShips);
 
   // getters
   int getDifficulty() const;

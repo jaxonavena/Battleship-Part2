@@ -11,6 +11,8 @@ Author: Team 9
 #include <limits>
 #include <optional>
 #include "player.hpp"
+#include "ai.hpp"
+
 
 namespace Setup {
 
@@ -28,7 +30,7 @@ namespace Setup {
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 
         std::cout << "Bad number (min 1, max 5) please try again: ";
-    } 
+    }
 
     //Clear input stream just in case cin leaves anything, as cin stops at white space
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
@@ -38,8 +40,8 @@ namespace Setup {
 
 //This function will initialize one of the players
 //Takes the number of ships as a parameter
-[[nodiscard]] std::optional<Player> initializePlayer(const int numShips) {    
-    std::string name; //Name of the player that we will receive 
+[[nodiscard]] std::optional<Player> initializePlayer(const int numShips) {
+    std::string name; //Name of the player that we will receive
     std::cout << "Please type your name: ";
 
     //If some error has ocurred, return a nullopt
@@ -50,6 +52,22 @@ namespace Setup {
 
     //Return the player name and ships as a player object
     return Player(name, numShips);
+}
+
+//This function will initialize an AI opponent
+//Takes the number of ships and ai_difficulty as a parameters
+[[nodiscard]] std::optional<AI> initializeAI(int ai_difficulty, const int numShips) {
+    // std::string name; //Name of the player that we will receive
+    // std::cout << "Please type your name: ";
+
+    //If some error has ocurred, return a nullopt
+    // if ( !(std::getline(std::cin, name)) ) {
+    //     std::cout << "A catastrophic error has ocurred!" << std::endl;
+    //     return std::nullopt;
+    // }
+
+    //Return the player name and ships as a player object
+    return AI(ai_difficulty, numShips);
 }
 
 }

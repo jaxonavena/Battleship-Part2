@@ -96,7 +96,7 @@ void Player::setupShips() {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 cout << "Bad number (min 1, max 10) please try again: ";
-            } 
+            }
             //then column
             char column; //Value of the input as a char
             cout << "Please enter ship 1 column: "; //min a - max j
@@ -108,7 +108,7 @@ void Player::setupShips() {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 cout << "Bad Letter ( a through j) please try again: ";
-            } 
+            }
             size_t column_conv = convert_chartoIndex( column ); //converts my char to a zero-indexed board number
             vector<pair<size_t, size_t>> oneCoords = { {row - 1, column_conv } }; //since board 0 indexed, need to subtract 1 from row
             s1->place(oneCoords); //place ship in ship array
@@ -135,7 +135,7 @@ void Player::setupShips() {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(),'\n');
                     cout << "Bad number (min 1, max 10) please try again: ";
-                } 
+                }
                 //then column
                 char column_pre; //Value of the input as a char
                 cout << "Please enter ship " << i + 1 << " column: "; //min a - max j
@@ -147,7 +147,7 @@ void Player::setupShips() {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(),'\n');
                     cout << "Bad Letter ( a through j) please try again: ";
-                } 
+                }
                 column = convert_chartoIndex( column_pre ); //converts my char to a zero-indexed board number
                 //which way to place the back (Left, right, up, or down)
                 cout << "Which way would you like to place the back? ([1]Up, [2]Right, [3]Down, or [4]Left): "; //classic terminal style, entering number to represent way
@@ -158,7 +158,7 @@ void Player::setupShips() {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(),'\n');
                     cout << "Bad number (min 1, max 4) please try again: "; //didn't choose one of the options, try again
-                } 
+                }
                 //check if valid, both in/off board AND not hitting another ship
                 if( way == 1 ) {
                     //going up, so column is auto valid and bottom bound
@@ -229,7 +229,7 @@ void Player::setupShips() {
                     for( auto& par : coords ) { //fix row indexing HERE to properly check
                         par = { par.first - 1, par.second }; //zero indexed array so need to subtract 1 from row
                     } //now my rows and columns are zero indexed for the board
-                    
+
                     //Only check if hitting other if in valid position.
                     //check if on top of this player's other ship!
                     //set hittingOther = false if not
@@ -249,7 +249,7 @@ void Player::setupShips() {
                         if( hittingOther == true ) {break;} //auto leave if hitting a ship, don't need to keep checking
                     }
                 }
-                
+
             }
             s1->place(coords); //update ship array
             bottom_board.place_ship( coords ); //update board with ship

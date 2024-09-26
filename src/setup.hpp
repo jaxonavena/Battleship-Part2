@@ -13,6 +13,7 @@ namespace Setup {
 
 [[nodiscard]] int getNumShips(); //don't ignore return value, so nodiscard
 [[nodiscard]] std::optional<Player> initializePlayer(const int numShips); //don't ignore return value, so nodiscard
+[[nodiscard]] std::optional<AI> initializeAI(int ai_difficulty, const int numShips); //don't ignore return value, so nodiscard
 
 }
 

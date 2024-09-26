@@ -17,7 +17,6 @@ using namespace std;
 #include <unistd.h>
 #include "player.hpp"
 #include "setup.hpp"
-#include "ai.hpp"
 
 int main() {
 

@@ -11,7 +11,6 @@ Author: Team 9
 #include <limits>
 #include <optional>
 #include "player.hpp"
-#include "ai.hpp"
 
 
 namespace Setup {
@@ -60,8 +59,6 @@ namespace Setup {
       //Return the player name and ships as a player object
       return Player(name, numShips);
     }
-
-
 }
 
 }

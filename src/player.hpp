@@ -16,7 +16,7 @@ using namespace std;
 class Player {
 
     public:
-        Player( const string& named, const int numShips);  //create player with name and number of ships
+        Player( const string& named, const int numShips, int ai_difficulty = 0, bool is_ai = false);  //create player with name and number of ships
         string returnName() const; //get player name (const) as won't change
         int getNumShips() const;   //get number of ships this player controls
         char getCellTopBoard(const size_t row, const size_t col) const; //get top board for gameplay loop

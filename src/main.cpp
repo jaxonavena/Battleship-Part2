@@ -70,7 +70,7 @@ int main() {
           return 1;
       }
 
-      ai->setDifficulty(ai_difficulty);
+      // ai->setDifficulty(ai_difficulty);
       ai->setupShips(); //setup ships within ai
       ai->print_Board(); //TMP
 

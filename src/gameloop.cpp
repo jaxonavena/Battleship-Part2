@@ -135,21 +135,20 @@ pair<size_t, size_t> GameplayLoop::getAIShot() {
         // }
 // LEVEL THREE
     } else if (playerTwo.this_ai_difficulty == 3){
-        cout << "Level 3 reached";
-        // while(true){
-        //     // idk if this works
-        //     // grabs a random coord from list of ship coords and will check if it has shot there already then shoot if not
-        //     size_t outerIndex = rand() % playerOne.playerShips.size();
-        //     size_t innerIndex = rand() % playerOne.playerShips[outerIndex].size();
-        //     std::pair<size_t,size_t> coords = playerOne.playerShips[outerIndex][innerIndex];
-        //     shot_row = coords.first; // Random row (0-9)
-        //     shot_col = coords.second; // Random column (0-9)
+      cout << "Level 3 reached";
+      while(!verifyShot(shot_row, shot_col)){
+        // grabs a random coord from list of ship coords and will check if it has shot there already then shoot if not
+        size_t outerIndex = rand() % playerOne.playerShips.size();
+        size_t innerIndex = rand() % playerOne.playerShips[outerIndex].size();
+        std::pair<size_t,size_t> coords = playerOne.playerShips[outerIndex][innerIndex];
+        shot_row = coords.first; // Random row (0-9)
+        shot_col = coords.second; // Random column (0-9)
+      }
+      return make_pair(shot_row, shot_col); //create pair to return for shot validation
 
-        //     if ( !verifyShot(shot_row, playerOne.convert_chartoIndex( column ))) {
-        //             return make_pair(shot_row, shot_col); //create pair to return for shot validation
-        //         }
-        // }
-    } else { cout << "no difficulty selected";}
+    } else {
+      cout << "no difficulty selected";
+    }
 }
 
 void GameplayLoop::playerOneTurn() {
@@ -169,13 +168,13 @@ void GameplayLoop::playerOneTurn() {
 
     if (flag > 0) {
         //hit
-        cout << "Player 1 Hit!" << endl;
+        cout << "Player 1 Hit their opponent!" << endl;
         playerOne.top_board.update(coord, true); //update board
         playerTwo.getShip(flag)->hit(coord); //hit the ship
         playerTwo.bottom_board.update(coord, true); //update bottom board
     }
     else {
-        cout << "Player 1 Miss!" << endl;
+        cout << "Player 1 Missed their opponent!" << endl;
         playerOne.top_board.update(coord, false); //update with miss
         playerTwo.bottom_board.update(coord, false); //update with miss
     }
@@ -216,16 +215,6 @@ void GameplayLoop::playerTwoTurn() {
 
     if (flag > 0) { //ship has been hit
         cout << "Player 2 Hit their opponent!" << endl;
-        // playerTwo.top_board.update(coord, true); //update board
-        // playerOne.getShip(flag)->hit(coord); //hit the ship
-        // playerOne.bottom_board.update(coord, true); //update bottom board
-        // playerTwo.lastHit = {true, coord}; // marks last hit for AI
-        // playerTwo.nextShots.clear(); // Clears nextshots vector for AI
-        // playerTwo.nextShots.push_back({coord.first,coord.second+1}); // Adds next shot for AI
-        // playerTwo.nextShots.push_back({coord.first,coord.second-1});// Adds next shot for AI
-        // playerTwo.nextShots.push_back({coord.first+1,coord.second});// Adds next shot for AI
-        // playerTwo.nextShots.push_back({coord.first-1,coord.second+1});// Adds next shot for AI
-
         playerTwo.top_board.update(coord, true); //update board
         playerOne.getShip(flag)->hit(coord); //hit the ship
         playerOne.bottom_board.update(coord, true); //update bottom board

@@ -31,7 +31,7 @@ int main() {
       cin.clear();
     }
 
-    if (use_ai == 'y' || use_ai == 'y') {
+    if (use_ai == 'y' || use_ai == 'Y') {
       while (ai_difficulty != 1 && ai_difficulty != 2 && ai_difficulty != 3) {
         cout << "What difficulty would you like to play against? (1,2,3) " << endl;
         cin >> ai_difficulty;  // Get input from the user
@@ -60,7 +60,7 @@ int main() {
 
     //set up player 2
 
-    if (use_ai == 'y' || use_ai == 'y') {
+    if (use_ai == 'y' || use_ai == 'Y') {
       cout << "\n\n\n\n\n\n\nSetting up AI..." << endl;
 
       optional<Player> ai = Setup::initializePlayer(numShips, ai_difficulty, true);

@@ -80,7 +80,7 @@ pair<size_t, size_t> GameplayLoop::getShot() const {
 }
 
 //This function gets a shot from the user in the format of RowCol
-pair<size_t, size_t> GameplayLoop::getAIShot() const {
+pair<size_t, size_t> GameplayLoop::getAIShot() {
     size_t shot_row = 0; //Value of the input
     size_t shot_col = 0; //Value of the input
     char column = 'a'; //Value of the input as a char
@@ -93,14 +93,39 @@ pair<size_t, size_t> GameplayLoop::getAIShot() const {
                 return make_pair(shot_row, shot_col); //create pair to return for shot validation
             }
         }
+    cout <<"level 1";
     } else if (playerTwo.this_ai_difficulty == 2) {
-      return make_pair(0,0);
+        while(true) {
+            // if last shot was a hit then try spots by it 
+            if (playerTwo.nextShots.size() == 0) {
+                playerTwo.lastHit.first = false;
+            }
+            if (playerTwo.lastHit.first == true){
+                std::pair<size_t,size_t> coords = playerTwo.nextShots.front();
+                playerTwo.nextShots.erase(playerTwo.nextShots.begin());
+                shot_row = coords.first;
+                shot_col = coords.second;
+
+                if ( !verifyShot(shot_row, playerOne.convert_chartoIndex( column ))) {
+                    return make_pair(shot_row, shot_col); //create pair to return for shot validation
+                }
+            } else {
+                // shoot randomly 
+                shot_row = rand() % 10; // Random row (0-9)
+                shot_col = rand() % 10; // Random column (0-9)
+
+                if ( !verifyShot(shot_row, playerOne.convert_chartoIndex( column ))) {
+                    return make_pair(shot_row, shot_col); //create pair to return for shot validation
+                }
+            }
+        }
     } else if (playerTwo.this_ai_difficulty == 3){
         while(true){
             // idk if this works 
+            // grabs a random coord from list of ship coords and will check if it has shot there already then shoot if not
             size_t outerIndex = rand() % playerOne.playerShips.size();
             size_t innerIndex = rand() % playerOne.playerShips[outerIndex].size();
-            std::pair coords = playerOne.playerShips[outerIndex][innerIndex];
+            std::pair<size_t,size_t> coords = playerOne.playerShips[outerIndex][innerIndex];
             shot_row = coords.first; // Random row (0-9)
             shot_col = coords.second; // Random column (0-9)
 
@@ -108,7 +133,7 @@ pair<size_t, size_t> GameplayLoop::getAIShot() const {
                     return make_pair(shot_row, shot_col); //create pair to return for shot validation
                 }
         }
-    }
+    } else { cout << "no difficulty selected";}
 }
 
 void GameplayLoop::playerOneTurn() {
@@ -151,7 +176,9 @@ void GameplayLoop::playerTwoTurn() {
     pair<size_t, size_t> coord;
 
     if (playerTwo.this_is_ai){
+      cout << "breaking 1";
       coord = getAIShot(); //pair that gets the shot from the AI
+      cout << "breaking 2";
     } else {
       coord = getShot(); //pair that gets the shot from the user
     }
@@ -169,6 +196,12 @@ void GameplayLoop::playerTwoTurn() {
         playerTwo.top_board.update(coord, true); //update board
         playerOne.getShip(flag)->hit(coord); //hit the ship
         playerOne.bottom_board.update(coord, true); //update bottom board
+        playerTwo.lastHit = {true, coord}; // marks last hit for AI
+        playerTwo.nextShots.clear(); // Clears nextshots vector for AI
+        playerTwo.nextShots.push_back({coord.first,coord.second+1}); // Adds next shot for AI
+        playerTwo.nextShots.push_back({coord.first,coord.second-1});// Adds next shot for AI
+        playerTwo.nextShots.push_back({coord.first+1,coord.second});// Adds next shot for AI
+        playerTwo.nextShots.push_back({coord.first-1,coord.second+1});// Adds next shot for AI
     }
     else {
         cout << "Player 2 Miss!" << endl;

@@ -84,7 +84,7 @@ pair<size_t, size_t> GameplayLoop::getAIShot() const {
     size_t shot_row = 0; //Value of the input
     size_t shot_col = 0; //Value of the input
     char column = 'a'; //Value of the input as a char
-    if (playerTwo.This_ai_difficulty == 1){
+    if (playerTwo.this_ai_difficulty == 1){
         while(true){
         shot_row = rand() % 10; // Random row (0-9)
         shot_col = rand() % 10; // Random column (0-9)
@@ -93,9 +93,10 @@ pair<size_t, size_t> GameplayLoop::getAIShot() const {
                 return make_pair(shot_row, shot_col); //create pair to return for shot validation
             }
         }
-    } else if {
+    } else if (PlayerTwo.this_ai_difficulty == 2) {
 
     } else{
+        PlayerOne.getShip
 
     }
 

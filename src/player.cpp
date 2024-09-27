@@ -114,6 +114,7 @@ void Player::setupShips() {
             size_t column_conv = convert_chartoIndex( column ); //converts my char to a zero-indexed board number
             vector<pair<size_t, size_t>> oneCoords = { {row - 1, column_conv } }; //since board 0 indexed, need to subtract 1 from row
             s1->place(oneCoords); //place ship in ship array
+            playerShips.push_back(oneCoords);
             bottom_board.place_ship( oneCoords ); //update board with ship
         }
         else {

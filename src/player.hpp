@@ -20,7 +20,7 @@ class Player {
         string returnName() const; //get player name (const) as won't change
         int getNumShips() const;   //get number of ships this player controls
         char getCellTopBoard(const size_t row, const size_t col) const; //get top board for gameplay loop
-        std::vector<std::vector<std::pair<int, int>>> playerShips;
+        std::vector<std::vector<std::pair<size_t, size_t>>> playerShips;
 
         Board get_top_board(); //getter for the top board
         Board get_bottom_board(); //getter for the bottom board

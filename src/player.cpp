@@ -179,6 +179,7 @@ void Player::setupShips() {
                             coords[ j ] = {row - j, column};
                         }
                     }
+                    
                 }
                 else if( way == 2) {
                     //going right, so row is valid and left bound is valid
@@ -254,6 +255,7 @@ void Player::setupShips() {
                 }
 
             }
+            playerShips.push_back(coords);
             s1->place(coords); //update ship array
             bottom_board.place_ship( coords ); //update board with ship
         }

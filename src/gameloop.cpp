@@ -93,10 +93,21 @@ pair<size_t, size_t> GameplayLoop::getAIShot() const {
                 return make_pair(shot_row, shot_col); //create pair to return for shot validation
             }
         }
-    } else if (true) {
+    } else if (playerTwo.this_ai_difficulty == 2) {
       return make_pair(0,0);
-    } else{
-      return make_pair(1,1);
+    } else if (playerTwo.this_ai_difficulty == 3){
+        while(true){
+            // idk if this works 
+            size_t outerIndex = rand() % playerOne.playerShips.size();
+            size_t innerIndex = rand() % playerOne.playerShips[outerIndex].size();
+            std::pair coords = playerOne.playerShips[outerIndex][innerIndex];
+            shot_row = coords.first; // Random row (0-9)
+            shot_col = coords.second; // Random column (0-9)
+
+            if ( !verifyShot(shot_row, playerOne.convert_chartoIndex( column ))) {
+                    return make_pair(shot_row, shot_col); //create pair to return for shot validation
+                }
+        }
     }
 }
 

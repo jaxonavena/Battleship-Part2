@@ -55,8 +55,8 @@ int main() {
     p1->print_Board(); //TMP
     //finish setup p1
 
-    sleep(3);
-    system("clear"); //clear the screen so player 2 doesn't see player 1's board
+    sleep(1);
+    // system("clear"); //clear the screen so player 2 doesn't see player 1's board
 
     //set up player 2
 
@@ -73,8 +73,8 @@ int main() {
       ai->setupAIShips(); //setup ships within ai
       ai->print_Board(); //TMP
 
-      sleep(3);
-      system("clear"); //clear the screen so player 1 doesn't see ai's board
+      sleep(1);
+      // system("clear"); //clear the screen so player 1 doesn't see ai's board
 
       cout << "\n\n\n\n\n\n\nStarting game..." << endl;
       //Initialize gameplay loop by dereferencing the optionals
@@ -94,8 +94,8 @@ int main() {
       p2->setupShips(); //setup ships within p2
       p2->print_Board(); //TMP
 
-      sleep(3);
-      system("clear"); //clear the screen so player 1 doesn't see player 2's board
+      sleep(1);
+      // system("clear"); //clear the screen so player 1 doesn't see player 2's board
 
       cout << "\n\n\n\n\n\n\nStarting game..." << endl;
       //Initialize gameplay loop by dereferencing the optionals

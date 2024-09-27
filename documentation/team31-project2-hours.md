@@ -14,3 +14,8 @@ Worked on getting input for the AI opponent difficulty and actually wiring up th
 Began implementing AI functionality -- having it take turns and whatnot.
 Hopped on a call with Pete to see if I could explain and hand off a bug to him to help fix.
 ```
+
+9/26 2 hours
+```
+Met with Pete and Ach online and planned a course of action to take to get around a bug we couldn't figure out. This jumpstarted our progress and now we're back on track. Everything is working with the AI opponent's initialization, progress is currently at the point getAIShot() gets called, but needs to be filled out. The plan is to do difficulties 1 and 3 before 2 due to complexity.
+```

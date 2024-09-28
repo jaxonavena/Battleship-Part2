@@ -21,8 +21,8 @@ class Player {
         int getNumShips() const;   //get number of ships this player controls
         char getCellTopBoard(const size_t row, const size_t col) const; //get top board for gameplay loop
         std::vector<std::vector<std::pair<size_t, size_t>>> playerShips; // Vector of ship vectors with all coords of each ship for AI level 3
-        std::pair<bool,std::pair<size_t, size_t>> lastHit = {false, {1,1}}; // for AI level 2, if last shot was a hit then 
-        std::vector<std::pair<size_t, size_t>> nextShots; // keep track of next shots for level 2. will reset with coords every hit 
+        std::pair<bool,std::pair<size_t, size_t>> lastHit = {false, {1,1}}; // for AI level 2, if last shot was a hit then
+        std::vector<std::pair<size_t, size_t>> nextShots; // keep track of next shots for level 2. will reset with coords every hit
 
         Board get_top_board(); //getter for the top board
         Board get_bottom_board(); //getter for the bottom board
@@ -39,6 +39,9 @@ class Player {
         Board bottom_board; //bottom board, shows this player's ships
         int this_ai_difficulty;
         bool this_is_ai;
+        bool has_used_special_attack = false;
+        bool ask_to_use_special_attack();
+        void special_attack();
 
 
     private:

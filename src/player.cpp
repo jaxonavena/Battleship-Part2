@@ -34,13 +34,29 @@ size_t Player::convert_chartoIndex( char column ) const {
     else { return -1; } //error
 }
 
-Player::Player( const string& named , const int numShips, int ai_difficulty, bool is_ai) { //Player constructor from player name and number of ships
+Player::Player( const string& named , const int numShips, int ai_difficulty, bool is_ai) : has_used_special_attack(false) { //Player constructor from player name and number of ships
     name = named; //player's name
     numofShips = numShips; //number of ships this player controls
     this_ai_difficulty = ai_difficulty;
     this_is_ai = is_ai;
 }
 
+bool Player::ask_to_use_special_attack() {
+  char using_special_attack;
+
+  cout << "Use special attack (y/n)?: ";
+  cin >> using_special_attack;
+  if (using_special_attack == 'y' || using_special_attack == 'Y') {  // Check if the user chose 'y'
+    return true;
+  }
+
+  return false;
+}
+
+void Player::special_attack() {
+
+  has_used_special_attack = true;
+}
 
 string Player::returnName() const {
     return name; //return name
@@ -179,7 +195,7 @@ void Player::setupShips() {
                             coords[ j ] = {row - j, column};
                         }
                     }
-                    
+
                 }
                 else if( way == 2) {
                     //going right, so row is valid and left bound is valid

@@ -25,6 +25,11 @@ Met with Pete and Ach online and planned a course of action to take to get aroun
 Went over Pete's additions and made some changes to fix the bugs. Difficulty 1 and 3 are now functioning for the AI.
 ```
 
+9/28 3 hours
+```
+Got level 2 difficulty working for AI. Pete had left some code that was close, but not functioning that I changed to the current state.
+```
+
 # pete
 9/26 3 hours
 '''

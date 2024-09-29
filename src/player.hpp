@@ -42,6 +42,7 @@ class Player {
         bool has_used_special_attack = false;
         bool ask_to_use_special_attack();
         void special_attack();
+        bool special = false;
 
 
     private:

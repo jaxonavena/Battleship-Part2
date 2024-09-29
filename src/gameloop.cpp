@@ -8,6 +8,7 @@ player 2 gets their turn.
 Author: Team 9
 */
 #include "gameloop.hpp"
+#include "player.hpp"
 
 #include <iostream>
 #include <limits>
@@ -79,6 +80,14 @@ pair<size_t, size_t> GameplayLoop::getShot() const {
         if ( !verifyShot(shot_row, playerOne.convert_chartoIndex( column ))) {
             cout << "You have already taken this shot! Try again.";
         } else {
+            if (playerOne.special == true) {
+              return make_pair(shot_row - 1, playerOne.convert_chartoIndex( column ));
+              return make_pair(shot_row + 1, playerOne.convert_chartoIndex( column ));
+              return make_pair(shot_row, playerOne.convert_chartoIndex( column ) - 1);
+              return make_pair(shot_row, playerOne.convert_chartoIndex( column ) + 1);
+              std::cout << "HI";
+              playerOne.special = false;
+              }
             return make_pair(shot_row, playerOne.convert_chartoIndex( column )); //create pair to return for shot validation
         }
     }
@@ -212,6 +221,9 @@ void GameplayLoop::playerOneTurn() {
     cout << "Player 1's Turn." << endl; //output player turn
     playerOne.print_Board(); //print player 1's board
 
+    if ( !playerOne.has_used_special_attack ) {
+      playerOne.ask_to_use_special_attack();
+    }
     pair<size_t, size_t> coord = getShot();//pair that gets the shot from the user
 
     std::pair<bool, int> values = its_a_hit(playerOne, playerTwo, coord); //output ship
@@ -253,6 +265,9 @@ void GameplayLoop::playerTwoTurn() {
       coord = getAIShot(); //pair that gets the shot from the AI
     } else {
       cout << "Getting regular player2 shot";
+      if ( !playerTwo.has_used_special_attack ) {
+        playerTwo.ask_to_use_special_attack();
+      }
       coord = getShot(); //pair that gets the shot from the user
     }
 
@@ -308,8 +323,8 @@ bool GameplayLoop::gameOver() const {
                   << playerOne.returnName() << " wins!" << endl; //use player one name to lose
         return true; //there is a loss here
     }
+    return false;
 }
-
 void GameplayLoop::start() {
 
     // Main loop

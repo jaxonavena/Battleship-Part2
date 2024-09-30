@@ -225,47 +225,94 @@ bool GameplayLoop::its_a_hit(Player& main, Player& target, pair<size_t, size_t> 
 }
 
 bool GameplayLoop::special_attack(Player& main, Player& target) {
-  cout << "HASNT USED SPECIAL\n";
-  if (main.ask_to_use_special_attack()) {
-    cout << "IN SPECIAL\n";
-    // Generate 5 random coords and then validate each. All three must pass or three more will be generated.
-    std::vector<std::pair<size_t, size_t>> special_attack_coords;
-    int flag = 0;
-    while (flag == 0) {
-      for (int i = 0; i < 3; i++) {
-        // Generate coorstd::pair<bool, int> values = d
-        size_t shot_row = rand() % 10; // Random row (0-9)
-        size_t shot_col = rand() % 10; // Random column (0-9)
-        cout << "NEW COORD: " << shot_row << ", " << shot_col << "\n";
-        std::pair<size_t, size_t> coord = make_pair(shot_row, shot_col);
-        special_attack_coords.push_back(coord);
-      }
-
-      // Validate the coords
-      for (std::pair<size_t, size_t> coord : special_attack_coords) {
-        std::cout << "Putting" << coord.first << ", " << coord.second << "in the list\n";
-        if (verifyShot( coord.first, coord.second)) {
-          flag = 1; // All shots need to be valid
-        }      
-        else {
-          flag = 0;
-          special_attack_coords.clear();
-          break;
+  if (main.this_is_ai && main.has_used_special_attack == false) {
+    cout << "HASNT USED SPECIAL\n";
+    int use_special = rand() % 10; // Random row (0-9)
+    if (use_special == 5) { // 5 is arbitrary, 10% chance to use the special attack
+      cout << "IN SPECIAL reg\n";
+      // Generate 5 random coords and then validate each. All three must pass or three more will be generated.
+      std::vector<std::pair<size_t, size_t>> special_attack_coords;
+      int flag = 0;
+      while (flag == 0) {
+        for (int i = 0; i < 3; i++) {
+          // Generate coorstd::pair<bool, int> values = d
+          size_t shot_row = rand() % 10; // Random row (0-9)
+          size_t shot_col = rand() % 10; // Random column (0-9)
+          cout << "NEW COORD: " << shot_row << ", " << shot_col << "\n";
+          std::pair<size_t, size_t> coord = make_pair(shot_row, shot_col);
+          special_attack_coords.push_back(coord);
         }
-      }
-    } 
 
-    if (flag == 1) { // Double check if all coords ended up being valid..
-      for (std::pair<size_t, size_t> coord : special_attack_coords) {
-        // shoot da shots
-        its_a_hit(main, target, coord);
+        // Validate the coords
+        for (std::pair<size_t, size_t> coord : special_attack_coords) {
+          std::cout << "Putting" << coord.first << ", " << coord.second << "in the list\n";
+          if (verifyShot( coord.first, coord.second)) {
+            flag = 1; // All shots need to be valid
+          }      
+          else {
+            flag = 0;
+            special_attack_coords.clear();
+            break;
+          }
+        }
+      } 
+
+      if (flag == 1) { // Double check if all coords ended up being valid..
+        for (std::pair<size_t, size_t> coord : special_attack_coords) {
+          // shoot da shots
+          its_a_hit(main, target, coord);
+        }
+        main.has_used_special_attack = true;
+        cout << "AI used special attack";
+        return true;     // 
       }
-      main.has_used_special_attack = true;
-      return true;     // 
+    } else {
+      return false;
     }
   } else {
-      return false;
+    if (main.ask_to_use_special_attack()) {
+      cout << "IN SPECIAL reg\n";
+      // Generate 5 random coords and then validate each. All three must pass or three more will be generated.
+      std::vector<std::pair<size_t, size_t>> special_attack_coords;
+      int flag = 0;
+      while (flag == 0) {
+        for (int i = 0; i < 3; i++) {
+          // Generate coorstd::pair<bool, int> values = d
+          size_t shot_row = rand() % 10; // Random row (0-9)
+          size_t shot_col = rand() % 10; // Random column (0-9)
+          cout << "NEW COORD: " << shot_row << ", " << shot_col << "\n";
+          std::pair<size_t, size_t> coord = make_pair(shot_row, shot_col);
+          special_attack_coords.push_back(coord);
+        }
+
+        // Validate the coords
+        for (std::pair<size_t, size_t> coord : special_attack_coords) {
+          std::cout << "Putting" << coord.first << ", " << coord.second << "in the list\n";
+          if (verifyShot( coord.first, coord.second)) {
+            flag = 1; // All shots need to be valid
+          }      
+          else {
+            flag = 0;
+            special_attack_coords.clear();
+            break;
+          }
+        }
+      } 
+
+      if (flag == 1) { // Double check if all coords ended up being valid..
+        for (std::pair<size_t, size_t> coord : special_attack_coords) {
+          // shoot da shots
+          its_a_hit(main, target, coord);
+        }
+        main.has_used_special_attack = true;
+        cout << "player used special";
+        return true;     // 
+      }
+    } else {
+        return false;
+    }
   }
+  
 }
 
 void GameplayLoop::playerOneTurn() {
@@ -316,6 +363,7 @@ void GameplayLoop::playerTwoTurn() {
       coord = getShot(); //pair that gets the shot from the user
     }
 
+    its_a_hit(playerTwo, playerOne, coord); //output ship
     playerTwo.print_Board(); //reprint board(s)
     sleep(4); //sleep for hot seat.
     // system("clear"); //clear the terminal before the next action

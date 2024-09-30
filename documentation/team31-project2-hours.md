@@ -30,9 +30,25 @@ Went over Pete's additions and made some changes to fix the bugs. Difficulty 1 a
 Got level 2 difficulty working for AI. Pete had left some code that was close, but not functioning that I changed to the current state.
 ```
 
+9/29 3 hours
+```
+Pulled up to the fishbowl to help with the special attack.
+```
+
 # pete
 9/26 3 hours
 '''
 added ai level logic and tried to find out why the game is crashing when player 2 is being set up on both ai or two player
 
 '''
+
+# Peter
+9/28 2 hours
+```
+Honestly couldn't get it working in c++ on my laptop. Tried downloading a bunch of stuff. Going to lab tomorrow
+```
+
+9/29 7 hours
+```
+Fixed a bug where you could only make one move. Worked on the special attack where 3 random attacks are made. Jaxon helped me out a ton with this.
+```

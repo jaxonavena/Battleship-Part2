@@ -316,27 +316,6 @@ void GameplayLoop::playerTwoTurn() {
       coord = getShot(); //pair that gets the shot from the user
     }
 
-    // int flag = 0; //output ship
-
-    // for (int i = 1; i < playerOne.getNumShips() + 1; i++) {
-    //     if (playerOne.getShip(i)->valid_space(coord)) { //if is_hit, update board and ship
-    //         flag = i; //which ship has been hit
-    //         break; //exit loop
-    //     }
-    // }
-
-    // if (flag > 0) { //ship has been hit
-    //     cout << "Player 2 Hit their opponevaluent!" << endl;
-    //     playerTwo.top_board.update(coord, true); //update board
-    //     playerOne.getShip(flag)->hit(coord); //hit the ship
-    //     playerOne.bottom_board.update(coord, true); //update bottom board
-    // }
-    // else {
-    //     cout << "Player 2 Missed their opponent!" << endl;
-    //     playerTwo.top_board.update(coord, false); //update top board no hit
-    //     playerOne.bottom_board.update(coord, false); //update bottom board no hit
-    // }
-
     playerTwo.print_Board(); //reprint board(s)
     sleep(4); //sleep for hot seat.
     // system("clear"); //clear the terminal before the next action

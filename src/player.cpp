@@ -43,15 +43,19 @@ Player::Player( const string& named , const int numShips, int ai_difficulty, boo
 }
 
 bool Player::ask_to_use_special_attack() {
-  char using_special_attack;
+  char using_special_attack = '_';
 
-  cout << "Use special attack (y/n)?: ";
-  cin >> using_special_attack;
-  if (using_special_attack == 'y' || using_special_attack == 'Y') {  // Check if the user chose 'y'
-    return true;
+  while (using_special_attack != 'n' || using_special_attack != 'N' || using_special_attack != 'y' || using_special_attack != 'Y') {
+    cout << "Use special attack (y/n)?: ";
+    cin >> using_special_attack;
+    if (using_special_attack == 'y' || using_special_attack == 'Y') {  // Check if the user chose 'y'
+        return true;
+    } else if (using_special_attack == 'n' || using_special_attack == 'N') {
+        return false;
+    }
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
   }
-
-  return false;
 }
 
 string Player::returnName() const {

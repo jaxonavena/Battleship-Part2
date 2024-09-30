@@ -172,8 +172,7 @@ pair<size_t, size_t> GameplayLoop::getAIShot() {
     }
 
 // LEVEL THREE
-    } else if (shot_row = rand() % 10) { // Random row (0-9)
-          shot_col = rand() % 10; // Random column (0-9)playerTwo.this_ai_difficulty == 3){
+    } else if (playerTwo.this_ai_difficulty == 3){
       // cout << "Level 3 reached";
       while(!verifyShot(shot_row, shot_col)){
         // grabs a random coord from list of ship coords and will check if it has shot there already then shoot if not

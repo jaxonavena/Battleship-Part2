@@ -26,7 +26,7 @@ class GameplayLoop {
         void playerOneTurn(); //take player one turn
         void playerTwoTurn(); //take player two turn
         bool gameOver() const; //check if the game is over, if so return true, otherwise false.
-        std::pair<bool, int> its_a_hit(Player main, Player target, pair<size_t, size_t> coord);
+        bool its_a_hit(Player main, Player target, pair<size_t, size_t> coord);
 };
 
 #endif

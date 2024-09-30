@@ -33,6 +33,8 @@ class Player {
         void setupShips(); //transfer control of ship control to player class
         void setupAIShips();
 
+        void special_attack(size_t row, size_t col);
+
         void print_Board(); //prints both top and bottom board
         size_t convert_chartoIndex( char column ) const; //converts a column char to a 0 indexed size_t
         Board top_board;    //top board, shows this player's shots and hits
@@ -42,7 +44,6 @@ class Player {
         bool has_used_special_attack = false;
         bool ask_to_use_special_attack();
         void special_attack();
-        bool special = false;
 
 
     private:

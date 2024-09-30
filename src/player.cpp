@@ -11,6 +11,7 @@ using namespace std;
 #include "player.hpp"
 
 #include <array>
+#include <utility>
 #include <iostream>
 #include <memory>
 #include <string>
@@ -34,7 +35,7 @@ size_t Player::convert_chartoIndex( char column ) const {
     else { return -1; } //error
 }
 
-Player::Player( const string& named , const int numShips, int ai_difficulty, bool is_ai, bool special) : has_used_special_attack(false) { //Player constructor from player name and number of ships
+Player::Player( const string& named , const int numShips, int ai_difficulty, bool is_ai) : has_used_special_attack(false) { //Player constructor from player name and number of ships
     name = named; //player's name
     numofShips = numShips; //number of ships this player controls
     this_ai_difficulty = ai_difficulty;
@@ -47,8 +48,6 @@ bool Player::ask_to_use_special_attack() {
   cout << "Use special attack (y/n)?: ";
   cin >> using_special_attack;
   if (using_special_attack == 'y' || using_special_attack == 'Y') {  // Check if the user chose 'y'
-    has_used_special_attack = true;
-    special = true;
     return true;
   }
 

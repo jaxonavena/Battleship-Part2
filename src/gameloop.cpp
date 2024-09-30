@@ -80,18 +80,9 @@ pair<size_t, size_t> GameplayLoop::getShot() const {
         if ( !verifyShot(shot_row, playerOne.convert_chartoIndex( column ))) {
             cout << "You have already taken this shot! Try again.";
         } else {
-            if (playerOne.special == true) {
-              return make_pair(shot_row - 1, playerOne.convert_chartoIndex( column ));
-              return make_pair(shot_row + 1, playerOne.convert_chartoIndex( column ));
-              return make_pair(shot_row, playerOne.convert_chartoIndex( column ) - 1);
-              return make_pair(shot_row, playerOne.convert_chartoIndex( column ) + 1);
-              std::cout << "HI";
-              playerOne.special = false;
-              }
             return make_pair(shot_row, playerOne.convert_chartoIndex( column )); //create pair to return for shot validation
         }
     }
-
 }
 
 //This function gets a shot from the user in the format of RowCol
@@ -134,8 +125,8 @@ pair<size_t, size_t> GameplayLoop::getAIShot() {
 
           if (verifyShot(shot_row, shot_col)) {
               // If the shot is a hit, continue targeting adjacent spaces
-              std::pair<bool, int> result = its_a_hit(playerTwo, playerOne, coord);
-            if (result.first) {
+            bool is_hit = its_a_hit(playerTwo, playerOne, coord);
+            if (is_hit) {
               // Add adjacent spots to the nextShots queue
               if (shot_row > 0) playerTwo.nextShots.push_back({shot_row - 1, shot_col}); // Up
               if (shot_row < 9) playerTwo.nextShots.push_back({shot_row + 1, shot_col}); // Down
@@ -159,9 +150,9 @@ pair<size_t, size_t> GameplayLoop::getAIShot() {
 
           if (verifyShot(shot_row, shot_col)) {
             // If the shot is a hit, begin targeting adjacent spots
-            std::pair<bool, int> result = its_a_hit(playerTwo, playerOne, coord);
+            bool is_hit = its_a_hit(playerTwo, playerOne, coord);
 
-            if (result.first) {
+            if (is_hit) {
               // Add adjacent spots to the nextShots queue
               if (shot_row > 0) playerTwo.nextShots.push_back({shot_row - 1, shot_col}); // Up
               if (shot_row < 9) playerTwo.nextShots.push_back({shot_row + 1, shot_col}); // Down
@@ -181,7 +172,8 @@ pair<size_t, size_t> GameplayLoop::getAIShot() {
     }
 
 // LEVEL THREE
-    } else if (playerTwo.this_ai_difficulty == 3){
+    } else if (shot_row = rand() % 10) { // Random row (0-9)
+          shot_col = rand() % 10; // Random column (0-9)playerTwo.this_ai_difficulty == 3){
       cout << "Level 3 reached";
       while(!verifyShot(shot_row, shot_col)){
         // grabs a random coord from list of ship coords and will check if it has shot there already then shoot if not
@@ -198,7 +190,7 @@ pair<size_t, size_t> GameplayLoop::getAIShot() {
     }
 }
 
-std::pair<bool, int> GameplayLoop::its_a_hit(Player main, Player target, pair<size_t, size_t> coord) {
+bool GameplayLoop::its_a_hit(Player main, Player target, pair<size_t, size_t> coord) {
   int flag = 0;
 
   for (int i = 1; i < main.getNumShips() + 1; i++) {
@@ -208,12 +200,28 @@ std::pair<bool, int> GameplayLoop::its_a_hit(Player main, Player target, pair<si
       }
   }
 
+  bool is_hit;
   if (flag > 0) {
-      return std::make_pair(true, flag);
+    is_hit = true;
   }
   else {
-      return std::make_pair(false, flag);
+    is_hit = false;
   }
+
+  if (is_hit) {
+        //hit
+        cout << "Hit your opponent!" << endl;
+        main.top_board.update(coord, true); //update board
+        target.getShip(flag)->hit(coord); //hit the ship
+        target.bottom_board.update(coord, true); //update bottom board
+        return true;
+    }
+    else {
+        cout << "Missed your opponent!" << endl;
+        main.top_board.update(coord, false); //update with miss
+        target.bottom_board.update(coord, false); //update with miss
+        return false;
+    }
 }
 
 void GameplayLoop::playerOneTurn() {
@@ -222,13 +230,53 @@ void GameplayLoop::playerOneTurn() {
     playerOne.print_Board(); //print player 1's board
 
     if ( !playerOne.has_used_special_attack ) {
-      playerOne.ask_to_use_special_attack();
-    }
-    pair<size_t, size_t> coord = getShot();//pair that gets the shot from the user
+      cout << "HASNT USED SPECIAL";
+      if (playerOne.ask_to_use_special_attack()) {
+        cout << "IN SPECIAL";
+        // Generate 5 random coords and then validate each. All three must pass or three more will be generated.
+        std::vector<std::pair<size_t, size_t>> special_attack_coords;
+        int flag = 0;
+        while (flag == 0) {
+          for (int i = 0; i < 3; i++) {
+            // Generate coorstd::pair<bool, int> values = d
+            size_t shot_row = rand() % 10; // Random row (0-9)
+            size_t shot_col = rand() % 10; // Random column (0-9)
+            cout << "NEW COORD: " << shot_row << ", " << shot_col;
+            std::pair<size_t, size_t> coord = make_pair(shot_row, shot_col);
+            special_attack_coords.push_back(coord);
+          }
 
-    std::pair<bool, int> values = its_a_hit(playerOne, playerTwo, coord); //output ship
-    bool is_hit = values.first;
-    int flag = values.second;
+          // Validate the coords
+          for (std::pair<size_t, size_t> coord : special_attack_coords) {
+            std::cout << "Putting" << coord.first << ", " << coord.second << "in the list";
+            if (verifyShot( coord.first, coord.second)) {
+              flag = 1; // All shots need to be valid
+            }      
+            else {
+              flag = 0;
+              special_attack_coords.clear();
+              break;
+            }
+          }
+        }
+
+        if (flag == 1) { // Double check if all coords ended up being valid..
+          for (std::pair<size_t, size_t> coord : special_attack_coords) {
+            // shoot da shots
+            its_a_hit(playerOne, playerTwo, coord);
+          }
+          playerOne.has_used_special_attack = true;
+          return; // Once we use the special attack, leave
+        }
+      }
+    }
+
+    pair<size_t, size_t> coord = getShot();//pair that gets the shot from the user
+    its_a_hit(playerOne, playerTwo, coord); //output ship
+    // bool is_hit = values.first;
+    // int flag = values.second;
+    //
+    /*
 
     if (is_hit) {
         //hit
@@ -241,7 +289,7 @@ void GameplayLoop::playerOneTurn() {
         cout << "Player 1 Missed their opponent!" << endl;
         playerOne.top_board.update(coord, false); //update with miss
         playerTwo.bottom_board.update(coord, false); //update with miss
-    }
+    }*/
 
     playerOne.print_Board(); //reprint board(s)
     sleep(4); //sleep for hot seat, wait for next player
@@ -281,7 +329,7 @@ void GameplayLoop::playerTwoTurn() {
     }
 
     if (flag > 0) { //ship has been hit
-        cout << "Player 2 Hit their opponent!" << endl;
+        cout << "Player 2 Hit their opponevaluent!" << endl;
         playerTwo.top_board.update(coord, true); //update board
         playerOne.getShip(flag)->hit(coord); //hit the ship
         playerOne.bottom_board.update(coord, true); //update bottom board

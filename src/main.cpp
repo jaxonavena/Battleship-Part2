@@ -85,7 +85,7 @@ int main() {
       gameLoop.start();
     }
     else {
-      cout << "\n\n\nSetting up Player 2..." << endl;
+      cout << "\n\n\nSetting up Player 2...(press enter)" << endl;
 
       optional<Player> p2 = Setup::initializePlayer(numShips); //player 2, set optional to catch errors
       if ( !p2 ) {

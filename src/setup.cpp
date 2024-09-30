@@ -12,6 +12,7 @@ Author: Team 9
 #include <optional>
 #include "player.hpp"
 
+
 namespace Setup {
 
 //This function will get the number of ships
@@ -28,7 +29,7 @@ namespace Setup {
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 
         std::cout << "Bad number (min 1, max 5) please try again: ";
-    } 
+    }
 
     //Clear input stream just in case cin leaves anything, as cin stops at white space
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
@@ -38,18 +39,26 @@ namespace Setup {
 
 //This function will initialize one of the players
 //Takes the number of ships as a parameter
-[[nodiscard]] std::optional<Player> initializePlayer(const int numShips) {    
-    std::string name; //Name of the player that we will receive 
-    std::cout << "Please type your name: ";
-
-    //If some error has ocurred, return a nullopt
-    if ( !(std::getline(std::cin, name)) ) {
-        std::cout << "A catastrophic error has ocurred!" << std::endl;
-        return std::nullopt;
+[[nodiscard]] std::optional<Player> initializePlayer(const int numShips, int ai_difficulty, bool is_ai) {
+    std::string name; //Name of the player that we will receive
+    if (is_ai) {
+      return Player("Tim", numShips, ai_difficulty, is_ai);
     }
+    else {
+      cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 
-    //Return the player name and ships as a player object
-    return Player(name, numShips);
+      std::cout << "Please type your name: ";
+
+          //If some error has ocurred, return a nullopt
+      if ( !(std::getline(std::cin, name)) ) {
+          std::cout << "A catastrophic error has ocurred!" << std::endl;
+          return std::nullopt;
+      }
+
+      //Return the player name and ships as a player object
+      return Player(name, numShips);
+    }
 }
 
 }

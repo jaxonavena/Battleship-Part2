@@ -11,6 +11,7 @@ using namespace std;
 #include "player.hpp"
 
 #include <array>
+#include <utility>
 #include <iostream>
 #include <memory>
 #include <string>
@@ -34,9 +35,27 @@ size_t Player::convert_chartoIndex( char column ) const {
     else { return -1; } //error
 }
 
-Player::Player( const string& named , const int numShips ) { //Player constructor from player name and number of ships
+Player::Player( const string& named , const int numShips, int ai_difficulty, bool is_ai) : has_used_special_attack(false) { //Player constructor from player name and number of ships
     name = named; //player's name
     numofShips = numShips; //number of ships this player controls
+    this_ai_difficulty = ai_difficulty;
+    this_is_ai = is_ai;
+}
+
+bool Player::ask_to_use_special_attack() {
+  char using_special_attack = '_';
+
+  while (using_special_attack != 'n' || using_special_attack != 'N' || using_special_attack != 'y' || using_special_attack != 'Y') {
+    cout << "Use special attack (y/n)?: ";
+    cin >> using_special_attack;
+    if (using_special_attack == 'y' || using_special_attack == 'Y') {  // Check if the user chose 'y'
+        return true;
+    } else if (using_special_attack == 'n' || using_special_attack == 'N') {
+        return false;
+    }
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(),'\n');
+  }
 }
 
 string Player::returnName() const {
@@ -74,7 +93,6 @@ shared_ptr<Ship> Player::getShip( const size_t shipSize ) const {
     return shipArray[ shipSize - 1 ]; //return pointer to ship
 }
 
-
 void Player::setupShips() {
     //setup ships and their coordinates
     for( int i = 0; i < numofShips; i++ ) {
@@ -96,7 +114,7 @@ void Player::setupShips() {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 cout << "Bad number (min 1, max 10) please try again: ";
-            } 
+            }
             //then column
             char column; //Value of the input as a char
             cout << "Please enter ship 1 column: "; //min a - max j
@@ -108,10 +126,11 @@ void Player::setupShips() {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 cout << "Bad Letter ( a through j) please try again: ";
-            } 
+            }
             size_t column_conv = convert_chartoIndex( column ); //converts my char to a zero-indexed board number
             vector<pair<size_t, size_t>> oneCoords = { {row - 1, column_conv } }; //since board 0 indexed, need to subtract 1 from row
             s1->place(oneCoords); //place ship in ship array
+            playerShips.push_back(oneCoords);
             bottom_board.place_ship( oneCoords ); //update board with ship
         }
         else {
@@ -135,7 +154,7 @@ void Player::setupShips() {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(),'\n');
                     cout << "Bad number (min 1, max 10) please try again: ";
-                } 
+                }
                 //then column
                 char column_pre; //Value of the input as a char
                 cout << "Please enter ship " << i + 1 << " column: "; //min a - max j
@@ -147,7 +166,7 @@ void Player::setupShips() {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(),'\n');
                     cout << "Bad Letter ( a through j) please try again: ";
-                } 
+                }
                 column = convert_chartoIndex( column_pre ); //converts my char to a zero-indexed board number
                 //which way to place the back (Left, right, up, or down)
                 cout << "Which way would you like to place the back? ([1]Up, [2]Right, [3]Down, or [4]Left): "; //classic terminal style, entering number to represent way
@@ -158,7 +177,7 @@ void Player::setupShips() {
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(),'\n');
                     cout << "Bad number (min 1, max 4) please try again: "; //didn't choose one of the options, try again
-                } 
+                }
                 //check if valid, both in/off board AND not hitting another ship
                 if( way == 1 ) {
                     //going up, so column is auto valid and bottom bound
@@ -176,6 +195,7 @@ void Player::setupShips() {
                             coords[ j ] = {row - j, column};
                         }
                     }
+
                 }
                 else if( way == 2) {
                     //going right, so row is valid and left bound is valid
@@ -229,7 +249,7 @@ void Player::setupShips() {
                     for( auto& par : coords ) { //fix row indexing HERE to properly check
                         par = { par.first - 1, par.second }; //zero indexed array so need to subtract 1 from row
                     } //now my rows and columns are zero indexed for the board
-                    
+
                     //Only check if hitting other if in valid position.
                     //check if on top of this player's other ship!
                     //set hittingOther = false if not
@@ -249,13 +269,92 @@ void Player::setupShips() {
                         if( hittingOther == true ) {break;} //auto leave if hitting a ship, don't need to keep checking
                     }
                 }
-                
+
             }
+            playerShips.push_back(coords);
             s1->place(coords); //update ship array
             bottom_board.place_ship( coords ); //update board with ship
         }
         shipArray[ i ] = s1; //place ship in array
         cin.clear(); //clear stream
         cin.ignore(numeric_limits<streamsize>::max(),'\n'); //clear input stream
+    }
+}
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+#include <cstdlib> // for rand()
+#include <ctime>   // for time()
+
+void Player::setupAIShips() {
+    // Seed random number generator
+    srand(static_cast<unsigned int>(time(0)));
+
+    for (int i = 0; i < numofShips; i++) {
+        // Create ship of size i + 1
+        shared_ptr<Ship> s1 = make_shared<Ship>(i + 1);
+        vector<pair<size_t, size_t>> coords(i + 1);
+        bool validPlacement = false;
+
+        while (!validPlacement) {
+            size_t row = rand() % 10; // Random row (0-9)
+            size_t column = rand() % 10; // Random column (0-9)
+            size_t direction = rand() % 4; // Random direction (0-3)
+
+            // Determine ship coordinates based on the random direction
+            for (size_t j = 0; j <= static_cast<size_t>(i); j++) {
+                if (direction == 0) { // Up
+                    coords[j] = {row - j, column};
+                } else if (direction == 1) { // Right
+                    coords[j] = {row, column + j};
+                } else if (direction == 2) { // Down
+                    coords[j] = {row + j, column};
+                } else { // Left
+                    coords[j] = {row, column - j};
+                }
+            }
+
+            // Check if all coordinates are within bounds
+            bool outOfBounds = false;
+            for (const auto& coord : coords) {
+                if (coord.first >= 10 || coord.second >= 10) {
+                    outOfBounds = true;
+                    break;
+                }
+            }
+
+            // Check for overlapping with other ships
+            bool hittingOther = false;
+            if (!outOfBounds) {
+                for (size_t j = 0; j < static_cast<size_t>(i); j++) {
+                    shared_ptr<Ship> shipToCheck = shipArray[j];
+                    for (const auto& coord : coords) {
+                        if (shipToCheck->valid_space(coord)) {
+                            hittingOther = true;
+                            break;
+                        }
+                    }
+                    if (hittingOther) break;
+                }
+            }
+
+            // If no issues, place the ship
+            if (!outOfBounds && !hittingOther) {
+                validPlacement = true;
+                s1->place(coords); // Place ship in ship array
+                bottom_board.place_ship(coords); // Update board with ship
+            }
+        }
+
+        shipArray[i] = s1; // Place ship in array
     }
 }

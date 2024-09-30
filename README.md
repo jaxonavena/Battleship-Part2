@@ -20,3 +20,14 @@ a ship pointer array.  Each ship is in charge of knowing where it is and its hit
 
 Gameplay: In order to keep it secret, this gameplay style is hot seat.  This means two players are sitting at the same terminal playing the game.
 After a player takes a shot, they wait a few seconds (to swap the seat), then the next player goes.
+
+-------------------------------------------
+
+Part 2 Additions
+
+Added an AI opponent to optionally play against. This AI has three difficulty levels.
+1. Randomly fires
+2. Randomly fires until it lands a hit, then will attempt to hit the same ship by firing in an orthogonally adjacent space. If it misses it continues to fire randomly.
+3. Lands a hit every turn.
+
+Added a special attack that any player including the AI can use once per game. It launches three shots at the opponent, but the game randomly selects the coordinate for these shots.

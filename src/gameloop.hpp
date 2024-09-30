@@ -27,6 +27,7 @@ class GameplayLoop {
         void playerTwoTurn(); //take player two turn
         bool gameOver() const; //check if the game is over, if so return true, otherwise false.
         bool its_a_hit(Player& main, Player& target, pair<size_t, size_t> coord);
+        bool special_attack(Player& main, Player& target);
 };
 
 #endif

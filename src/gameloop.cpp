@@ -39,10 +39,10 @@ bool GameplayLoop::verifyShot(const size_t row, const size_t col) const {
               return false; //verify shot as bad, don't continue
           }
       }
-      cout << "SHOT IS VALID\n";
+      // cout << "SHOT IS VALID\n";
       return true; //otherwise shot is good, continue
     }
-    cout << "SHOT IS INVALID\n";
+    // cout << "SHOT IS INVALID\n";
     return false;
 }
 
@@ -87,28 +87,28 @@ pair<size_t, size_t> GameplayLoop::getShot() const {
 
 //This function gets a shot from the user in the format of RowCol
 pair<size_t, size_t> GameplayLoop::getAIShot() {
-    cout << "Inside getAIShot()";
+    // cout << "Inside getAIShot()";
 
     size_t shot_row = -1;
     size_t shot_col = -1;
 // LEVEL 1
     if (playerTwo.this_ai_difficulty == 1){
-      cout << "\nLevel 1 reached";
+      // cout << "\nLevel 1 reached";
       while(!verifyShot(shot_row, shot_col)){
-        cout <<"\nin the while loop";
+        // cout <<"\nin the while loop";
 
         shot_row = rand() % 10; // Random row (0-9)
         shot_col = rand() % 10; // Random column (0-9)
 
       }
-      cout << "\nROW COL: ";
-      cout << shot_row;
-      cout << " ";
-      cout << shot_col;
+      // cout << "\nROW COL: ";
+      // cout << shot_row;
+      // cout << " ";
+      // cout << shot_col;
       return make_pair(shot_row, shot_col); //create pair to return for shot validation
 // LEVEL 2
     } else if (playerTwo.this_ai_difficulty == 2) {
-    cout << "Level 2 AI reached" << endl;
+    // cout << "Level 2 AI reached" << endl;
 
     while (true) {
       // If there are no next shots to try, reset the last hit status
@@ -174,7 +174,7 @@ pair<size_t, size_t> GameplayLoop::getAIShot() {
 // LEVEL THREE
     } else if (shot_row = rand() % 10) { // Random row (0-9)
           shot_col = rand() % 10; // Random column (0-9)playerTwo.this_ai_difficulty == 3){
-      cout << "Level 3 reached";
+      // cout << "Level 3 reached";
       while(!verifyShot(shot_row, shot_col)){
         // grabs a random coord from list of ship coords and will check if it has shot there already then shoot if not
         size_t outerIndex = rand() % playerOne.playerShips.size();
@@ -186,7 +186,7 @@ pair<size_t, size_t> GameplayLoop::getAIShot() {
       return make_pair(shot_row, shot_col); //create pair to return for shot validation
 
     } else {
-      cout << "no difficulty selected";
+      cout << "No difficulty selected";
     }
 }
 
@@ -226,10 +226,10 @@ bool GameplayLoop::its_a_hit(Player& main, Player& target, pair<size_t, size_t> 
 
 bool GameplayLoop::special_attack(Player& main, Player& target) {
   if (main.this_is_ai && main.has_used_special_attack == false) {
-    cout << "HASNT USED SPECIAL\n";
+    // cout << "HASNT USED SPECIAL\n";
     int use_special = rand() % 10; // Random row (0-9)
     if (use_special == 5) { // 5 is arbitrary, 10% chance to use the special attack
-      cout << "IN SPECIAL reg\n";
+      // cout << "IN SPECIAL reg\n";
       // Generate 5 random coords and then validate each. All three must pass or three more will be generated.
       std::vector<std::pair<size_t, size_t>> special_attack_coords;
       int flag = 0;
@@ -238,14 +238,14 @@ bool GameplayLoop::special_attack(Player& main, Player& target) {
           // Generate coorstd::pair<bool, int> values = d
           size_t shot_row = rand() % 10; // Random row (0-9)
           size_t shot_col = rand() % 10; // Random column (0-9)
-          cout << "NEW COORD: " << shot_row << ", " << shot_col << "\n";
+          // cout << "NEW COORD: " << shot_row << ", " << shot_col << "\n";
           std::pair<size_t, size_t> coord = make_pair(shot_row, shot_col);
           special_attack_coords.push_back(coord);
         }
 
         // Validate the coords
         for (std::pair<size_t, size_t> coord : special_attack_coords) {
-          std::cout << "Putting" << coord.first << ", " << coord.second << "in the list\n";
+          // std::cout << "Putting" << coord.first << ", " << coord.second << "in the list\n";
           if (verifyShot( coord.first, coord.second)) {
             flag = 1; // All shots need to be valid
           }      
@@ -263,7 +263,7 @@ bool GameplayLoop::special_attack(Player& main, Player& target) {
           its_a_hit(main, target, coord);
         }
         main.has_used_special_attack = true;
-        cout << "AI used special attack";
+        // cout << "AI used special attack";
         return true;     // 
       }
     } else {
@@ -271,7 +271,7 @@ bool GameplayLoop::special_attack(Player& main, Player& target) {
     }
   } else {
     if (main.ask_to_use_special_attack()) {
-      cout << "IN SPECIAL reg\n";
+      // cout << "IN SPECIAL reg\n";
       // Generate 5 random coords and then validate each. All three must pass or three more will be generated.
       std::vector<std::pair<size_t, size_t>> special_attack_coords;
       int flag = 0;
@@ -280,14 +280,14 @@ bool GameplayLoop::special_attack(Player& main, Player& target) {
           // Generate coorstd::pair<bool, int> values = d
           size_t shot_row = rand() % 10; // Random row (0-9)
           size_t shot_col = rand() % 10; // Random column (0-9)
-          cout << "NEW COORD: " << shot_row << ", " << shot_col << "\n";
+          // cout << "NEW COORD: " << shot_row << ", " << shot_col << "\n";
           std::pair<size_t, size_t> coord = make_pair(shot_row, shot_col);
           special_attack_coords.push_back(coord);
         }
 
         // Validate the coords
         for (std::pair<size_t, size_t> coord : special_attack_coords) {
-          std::cout << "Putting" << coord.first << ", " << coord.second << "in the list\n";
+          // std::cout << "Putting" << coord.first << ", " << coord.second << "in the list\n";
           if (verifyShot( coord.first, coord.second)) {
             flag = 1; // All shots need to be valid
           }      
@@ -305,7 +305,7 @@ bool GameplayLoop::special_attack(Player& main, Player& target) {
           its_a_hit(main, target, coord);
         }
         main.has_used_special_attack = true;
-        cout << "player used special";
+        // cout << "player used special";
         return true;     // 
       }
     } else {
@@ -346,7 +346,7 @@ void GameplayLoop::playerTwoTurn() {
     pair<size_t, size_t> coord;
 
     if (playerTwo.this_is_ai){
-      cout << "getting ai shot";
+      // cout << "getting ai shot";
       if ( !playerTwo.has_used_special_attack ) {
         if (special_attack(playerTwo, playerOne)) {
           return;
@@ -354,7 +354,7 @@ void GameplayLoop::playerTwoTurn() {
       }
       coord = getAIShot(); //pair that gets the shot from the AI
     } else {
-      cout << "Getting regular player2 shot";
+      // cout << "Getting regular player2 shot";
       if ( !playerTwo.has_used_special_attack ) {
         if (special_attack(playerTwo, playerOne)) {
           return;

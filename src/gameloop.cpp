@@ -329,7 +329,7 @@ void GameplayLoop::playerOneTurn() {
     its_a_hit(playerOne, playerTwo, coord); //output ship
     playerOne.print_Board(); //reprint board(s)
     sleep(4); //sleep for hot seat, wait for next player
-    // system("clear"); //clear the terminal before the next action
+    system("clear"); //clear the terminal before the next action
 }
 
 void GameplayLoop::playerTwoTurn() {
@@ -365,7 +365,7 @@ void GameplayLoop::playerTwoTurn() {
     its_a_hit(playerTwo, playerOne, coord); //output ship
     playerTwo.print_Board(); //reprint board(s)
     sleep(4); //sleep for hot seat.
-    // system("clear"); //clear the terminal before the next action
+    system("clear"); //clear the terminal before the next action
 
 }
 

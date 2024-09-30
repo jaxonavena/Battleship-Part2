@@ -56,7 +56,7 @@ int main() {
     //finish setup p1
 
     sleep(1);
-    // system("clear"); //clear the screen so player 2 doesn't see player 1's board
+    system("clear"); //clear the screen so player 2 doesn't see player 1's board
 
     //set up player 2
 
@@ -74,9 +74,9 @@ int main() {
       ai->print_Board(); //TMP
 
       sleep(1);
-      // system("clear"); //clear the screen so player 1 doesn't see ai's board
+      system("clear"); //clear the screen so player 1 doesn't see ai's board
 
-      cout << "\n\n\n\n\n\n\nStarting game..." << endl;
+      cout << "\n\n\nStarting game..." << endl;
       //Initialize gameplay loop by dereferencing the optionals
       //Dereferencing accesses the object directly
       //The player objects will be moved into the gameplay loop after this, meaning they cant be used in main
@@ -85,7 +85,7 @@ int main() {
       gameLoop.start();
     }
     else {
-      cout << "\n\n\n\n\n\n\nSetting up Player 2..." << endl;
+      cout << "\n\n\nSetting up Player 2..." << endl;
 
       optional<Player> p2 = Setup::initializePlayer(numShips); //player 2, set optional to catch errors
       if ( !p2 ) {
@@ -95,9 +95,9 @@ int main() {
       p2->print_Board(); //TMP
 
       sleep(1);
-      // system("clear"); //clear the screen so player 1 doesn't see player 2's board
+      system("clear"); //clear the screen so player 1 doesn't see player 2's board
 
-      cout << "\n\n\n\n\n\n\nStarting game..." << endl;
+      cout << "\n\n\nStarting game..." << endl;
       //Initialize gameplay loop by dereferencing the optionals
       //Dereferencing accesses the object directly
       //The player objects will be moved into the gameplay loop after this, meaning they cant be used in main
